@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DAL.Model.ManagementCenter.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DALModelManagementCenterStoreContainer">
+          <EntitySet Name="Customer" EntityType="DAL.Model.ManagementCenter.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerOrder" EntityType="DAL.Model.ManagementCenter.Store.CustomerOrder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.Store.ProductSupplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.Store.SupplierOrder" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.Store.FK__CustomerO__Custo__778AC167">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerO__Produ__787EE5A0" Association="DAL.Model.ManagementCenter.Store.FK__CustomerO__Produ__787EE5A0">
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+            <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Managemen__Suppl__72C60C4A" Association="DAL.Model.ManagementCenter.Store.FK__Managemen__Suppl__72C60C4A">
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierO__Produ__7C4F7684" Association="DAL.Model.ManagementCenter.Store.FK__SupplierO__Produ__7C4F7684">
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+            <End Role="SupplierOrder" EntitySet="SupplierOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierO__Suppl__7D439ABD" Association="DAL.Model.ManagementCenter.Store.FK__SupplierO__Suppl__7D439ABD">
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="SupplierOrder" EntitySet="SupplierOrder" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="CustomerOrder">
+          <Key>
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="OrderAmount" Type="int" />
+        </EntityType>
+        <EntityType Name="ManagementCenterProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="AvailableAmount" Type="int" />
+          <Property Name="SupplierId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductSupplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="SupplierOrder">
+          <Key>
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="OrderAmount" Type="int" />
+        </EntityType>
+        <Association Name="FK__CustomerO__Custo__778AC167">
+          <End Role="Customer" Type="DAL.Model.ManagementCenter.Store.Customer" Multiplicity="1" />
+          <End Role="CustomerOrder" Type="DAL.Model.ManagementCenter.Store.CustomerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerOrder">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerO__Produ__787EE5A0">
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" Multiplicity="1" />
+          <End Role="CustomerOrder" Type="DAL.Model.ManagementCenter.Store.CustomerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCenterProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerOrder">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Managemen__Suppl__72C60C4A">
+          <End Role="ProductSupplier" Type="DAL.Model.ManagementCenter.Store.ProductSupplier" Multiplicity="0..1" />
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSupplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagementCenterProduct">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierO__Produ__7C4F7684">
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" Multiplicity="1" />
+          <End Role="SupplierOrder" Type="DAL.Model.ManagementCenter.Store.SupplierOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCenterProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierOrder">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierO__Suppl__7D439ABD">
+          <End Role="ProductSupplier" Type="DAL.Model.ManagementCenter.Store.ProductSupplier" Multiplicity="1" />
+          <End Role="SupplierOrder" Type="DAL.Model.ManagementCenter.Store.SupplierOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSupplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierOrder">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_DeleteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="supplierId" Type="int" Mode="In" />
+          <Parameter Name="price" Type="float" Mode="In" />
+          <Parameter Name="startAmount" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DAL.Model.ManagementCenter" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AsiTechManagementCenterContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="DAL.Model.ManagementCenter.Customer" />
+          <EntitySet Name="CustomerOrder" EntityType="DAL.Model.ManagementCenter.CustomerOrder" />
+          <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.ManagementCenterProduct" />
+          <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.ProductSupplier" />
+          <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.SupplierOrder" />
+          <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerO__Produ__787EE5A0" Association="DAL.Model.ManagementCenter.FK__CustomerO__Produ__787EE5A0">
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+            <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Managemen__Suppl__72C60C4A" Association="DAL.Model.ManagementCenter.FK__Managemen__Suppl__72C60C4A">
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierO__Produ__7C4F7684" Association="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684">
+            <End Role="ManagementCenterProduct" EntitySet="ManagementCenterProduct" />
+            <End Role="SupplierOrder" EntitySet="SupplierOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierO__Suppl__7D439ABD" Association="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD">
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="SupplierOrder" EntitySet="SupplierOrder" />
+          </AssociationSet>
+          <FunctionImport Name="sp_DeleteProduct">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertProduct">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="supplierId" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Double" />
+            <Parameter Name="startAmount" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CustomerOrder" Relationship="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167" FromRole="Customer" ToRole="CustomerOrder" />
+        </EntityType>
+        <EntityType Name="CustomerOrder">
+          <Key>
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="OrderAmount" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167" FromRole="CustomerOrder" ToRole="Customer" />
+          <NavigationProperty Name="ManagementCenterProduct" Relationship="DAL.Model.ManagementCenter.FK__CustomerO__Produ__787EE5A0" FromRole="CustomerOrder" ToRole="ManagementCenterProduct" />
+        </EntityType>
+        <EntityType Name="ManagementCenterProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="AvailableAmount" Type="Int32" />
+          <Property Name="SupplierId" Type="Int32" />
+          <NavigationProperty Name="CustomerOrder" Relationship="DAL.Model.ManagementCenter.FK__CustomerO__Produ__787EE5A0" FromRole="ManagementCenterProduct" ToRole="CustomerOrder" />
+          <NavigationProperty Name="ProductSupplier" Relationship="DAL.Model.ManagementCenter.FK__Managemen__Suppl__72C60C4A" FromRole="ManagementCenterProduct" ToRole="ProductSupplier" />
+          <NavigationProperty Name="SupplierOrder" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684" FromRole="ManagementCenterProduct" ToRole="SupplierOrder" />
+        </EntityType>
+        <EntityType Name="ProductSupplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ManagementCenterProduct" Relationship="DAL.Model.ManagementCenter.FK__Managemen__Suppl__72C60C4A" FromRole="ProductSupplier" ToRole="ManagementCenterProduct" />
+          <NavigationProperty Name="SupplierOrder" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD" FromRole="ProductSupplier" ToRole="SupplierOrder" />
+        </EntityType>
+        <EntityType Name="SupplierOrder">
+          <Key>
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="OrderAmount" Type="Int32" />
+          <NavigationProperty Name="ManagementCenterProduct" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684" FromRole="SupplierOrder" ToRole="ManagementCenterProduct" />
+          <NavigationProperty Name="ProductSupplier" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD" FromRole="SupplierOrder" ToRole="ProductSupplier" />
+        </EntityType>
+        <Association Name="FK__CustomerO__Custo__778AC167">
+          <End Role="Customer" Type="DAL.Model.ManagementCenter.Customer" Multiplicity="1" />
+          <End Role="CustomerOrder" Type="DAL.Model.ManagementCenter.CustomerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerOrder">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerO__Produ__787EE5A0">
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.ManagementCenterProduct" Multiplicity="1" />
+          <End Role="CustomerOrder" Type="DAL.Model.ManagementCenter.CustomerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCenterProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerOrder">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Managemen__Suppl__72C60C4A">
+          <End Role="ProductSupplier" Type="DAL.Model.ManagementCenter.ProductSupplier" Multiplicity="0..1" />
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.ManagementCenterProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSupplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagementCenterProduct">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierO__Produ__7C4F7684">
+          <End Role="ManagementCenterProduct" Type="DAL.Model.ManagementCenter.ManagementCenterProduct" Multiplicity="1" />
+          <End Role="SupplierOrder" Type="DAL.Model.ManagementCenter.SupplierOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCenterProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierOrder">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierO__Suppl__7D439ABD">
+          <End Role="ProductSupplier" Type="DAL.Model.ManagementCenter.ProductSupplier" Multiplicity="1" />
+          <End Role="SupplierOrder" Type="DAL.Model.ManagementCenter.SupplierOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSupplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierOrder">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DALModelManagementCenterStoreContainer" CdmEntityContainer="AsiTechManagementCenterContext">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerOrder">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.CustomerOrder">
+              <MappingFragment StoreEntitySet="CustomerOrder">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagementCenterProduct">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.ManagementCenterProduct">
+              <MappingFragment StoreEntitySet="ManagementCenterProduct">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="AvailableAmount" ColumnName="AvailableAmount" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSupplier">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.ProductSupplier">
+              <MappingFragment StoreEntitySet="ProductSupplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierOrder">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.SupplierOrder">
+              <MappingFragment StoreEntitySet="SupplierOrder">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_DeleteProduct" FunctionName="DAL.Model.ManagementCenter.Store.sp_DeleteProduct" />
+          <FunctionImportMapping FunctionImportName="sp_InsertProduct" FunctionName="DAL.Model.ManagementCenter.Store.sp_InsertProduct" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

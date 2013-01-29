@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C19A9AF-5C0D-4909-A3AB-B363831616B4}</ProjectGuid>
+    <ProjectGuid>{ACD03E0B-78EB-4BBC-B8CA-F7AA63713325}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL.EntityFramework</RootNamespace>
@@ -34,7 +34,13 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,21 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataAccessService.cs" />
+    <Compile Include="ASITechContext.cs" />
+    <Compile Include="DataAccess\ClientService.cs" />
+    <Compile Include="DataAccess\OrderService.cs" />
+    <Compile Include="DataAccess\ProductService.cs" />
+    <Compile Include="DataObjects\Client.cs" />
+    <Compile Include="DataObjects\Mappings\ClientMap.cs" />
+    <Compile Include="DataObjects\Mappings\OrderMap.cs" />
+    <Compile Include="DataObjects\Mappings\ProductMap.cs" />
+    <Compile Include="DataObjects\Mappings\SupplierMap.cs" />
+    <Compile Include="DataObjects\Order.cs" />
+    <Compile Include="DataObjects\Supplier.cs" />
+    <Compile Include="DataObjects\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicesImpl\ManagementCenterAccessImpl.cs" />
-    <Compile Include="ServicesImpl\OrdersCenterAccessImpl.cs" />
+    <Compile Include="DataAccess\SupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
-      <Project>{AB2EE858-2DB4-440B-82E4-4336B12F8ED2}</Project>
-      <Name>DAL.Access</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL.Model\DAL.Model.csproj">
-      <Project>{AF9CBAEC-0BC0-4B2C-8D2A-638F35237F6C}</Project>
-      <Name>DAL.Model</Name>
+    <ProjectReference Include="..\DAL.Interfaces\DAL.Interfaces.csproj">
+      <Project>{5239c5a8-0c7f-406b-9d6b-74846b86dbb4}</Project>
+      <Name>DAL.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

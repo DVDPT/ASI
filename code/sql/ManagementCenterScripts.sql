@@ -1,8 +1,11 @@
 use AsiTechManagementCenter
 
+--drop proc sp_InsertProduct
 --drop table CustomerOrder
+--drop table SupplierOrder
 --drop table ManagementCenterProduct
---drop table ProductProvider
+--drop table ProductSupplier
+--drop table Customer
 
 declare @PcName nvarchar(128)
 declare @OrderCenterServer nvarchar(128)
@@ -26,8 +29,8 @@ end
 create table ProductSupplier
 (
 	Id int primary key,
-	Name varchar not null,
-	Address varchar not null,
+	Name varchar(128) not null,
+	Address varchar(256) not null,
 
 )
 
@@ -43,7 +46,7 @@ create table Customer
 (
 	Id int primary key,
 	Address varchar not null,
-	Email varchar
+	Email varchar(128)
 )
 
 create table CustomerOrder
@@ -65,9 +68,10 @@ create table SupplierOrder
 	primary key (OrderDate,ProductId,SupplierId)
 )
 
+
 create proc sp_InsertProduct
 	@id int,
-	@name varchar,
+	@name varchar(128),
 	@supplierId int,
 	@price float,
 	@startAmount int
@@ -79,3 +83,15 @@ as
 	commit transaction
 go
 
+create proc sp_DeleteProduct
+	@id int
+as
+	set XACT_ABORT on
+	begin distributed transaction
+		delete from ManagementCenterProduct where Id=@id
+		delete from OrderCenterProduct      where Id=@id
+	commit transaction
+go
+
+select * from ManagementCenterProduct 
+select * from OrderCenterProduct 

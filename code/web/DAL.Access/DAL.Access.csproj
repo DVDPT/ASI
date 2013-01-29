@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C19A9AF-5C0D-4909-A3AB-B363831616B4}</ProjectGuid>
+    <ProjectGuid>{AB2EE858-2DB4-440B-82E4-4336B12F8ED2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL.EntityFramework</RootNamespace>
-    <AssemblyName>DAL.EntityFramework</AssemblyName>
+    <RootNamespace>DAL.Access</RootNamespace>
+    <AssemblyName>DAL.Access</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,21 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataAccessService.cs" />
+    <Compile Include="Common\ICustomerService.cs" />
+    <Compile Include="IDataAccess.cs" />
+    <Compile Include="ManagementCenter\ICustomerOrderService.cs" />
+    <Compile Include="ManagementCenter\IProductService.cs" />
+    <Compile Include="ManagementCenter\IProductSupplierService.cs" />
+    <Compile Include="ManagementCenter\ISupplierOrderService.cs" />
+    <Compile Include="OrdersCenter\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicesImpl\ManagementCenterAccessImpl.cs" />
-    <Compile Include="ServicesImpl\OrdersCenterAccessImpl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
-      <Project>{AB2EE858-2DB4-440B-82E4-4336B12F8ED2}</Project>
-      <Name>DAL.Access</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL.Model\DAL.Model.csproj">
       <Project>{AF9CBAEC-0BC0-4B2C-8D2A-638F35237F6C}</Project>
       <Name>DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

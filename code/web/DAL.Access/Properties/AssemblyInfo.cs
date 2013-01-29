@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DAL.EntityFramework")]
+[assembly: AssemblyTitle("DAL.Access")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DAL.EntityFramework")]
+[assembly: AssemblyProduct("DAL.Access")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("87a3242c-9ade-4956-b2e0-ea165a899d70")]
+[assembly: Guid("b4e6c9da-9e5b-46d7-9101-414237b6483c")]
 
 // Version information for an assembly consists of the following four values:
 //

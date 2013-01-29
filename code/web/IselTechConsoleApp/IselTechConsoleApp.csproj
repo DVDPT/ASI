@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C19A9AF-5C0D-4909-A3AB-B363831616B4}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{13385328-E511-4A08-9081-5676672558FC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL.EntityFramework</RootNamespace>
-    <AssemblyName>DAL.EntityFramework</AssemblyName>
+    <RootNamespace>IselTechConsoleApp</RootNamespace>
+    <AssemblyName>IselTechConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,18 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataAccessService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicesImpl\ManagementCenterAccessImpl.cs" />
-    <Compile Include="ServicesImpl\OrdersCenterAccessImpl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
-      <Project>{AB2EE858-2DB4-440B-82E4-4336B12F8ED2}</Project>
-      <Name>DAL.Access</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DAL.Model\DAL.Model.csproj">
-      <Project>{AF9CBAEC-0BC0-4B2C-8D2A-638F35237F6C}</Project>
+      <Project>{af9cbaec-0bc0-4b2c-8d2a-638f35237f6c}</Project>
       <Name>DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>

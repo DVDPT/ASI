@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe5fc3da462345b49e685697355d6278" Name="Diagram1">
+        <EntityTypeShape EntityType="DAL.Model.ManagementCenter.Customer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Model.ManagementCenter.CustomerOrder" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Model.ManagementCenter.ManagementCenterProduct" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Model.ManagementCenter.ProductSupplier" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Model.ManagementCenter.SupplierOrder" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Model.ManagementCenter.FK__CustomerO__Produ__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Model.ManagementCenter.FK__Managemen__Suppl__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

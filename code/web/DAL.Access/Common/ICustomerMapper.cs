@@ -7,7 +7,7 @@ using DAL.Model.Common;
 
 namespace DAL.Access.Common
 {
-    public interface ICustomerService : IDataAccess<CustomerBase, int>
+    public interface ICustomerMapper : IDataMapper<CustomerBase, int>
     {
     }
 }

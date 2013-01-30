@@ -8,11 +8,11 @@ using DAL.Access;
 
 namespace DAL.EntityFramework
 {
-    public abstract class BaseDataAccessService<TValue, TKey> : IDataAccess<TValue, TKey> where TValue : class
+    public abstract class BaseDataMapper<TValue, TKey> : IDataMapper<TValue, TKey> where TValue : class
     {
         private readonly IDbSet<TValue> _dbSet;
 
-        protected BaseDataAccessService(IDbSet<TValue> dbSet)
+        protected BaseDataMapper(IDbSet<TValue> dbSet)
         {
 
             _dbSet = dbSet;

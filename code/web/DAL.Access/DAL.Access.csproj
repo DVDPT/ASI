@@ -39,13 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ICustomerService.cs" />
-    <Compile Include="IDataAccess.cs" />
-    <Compile Include="ManagementCenter\ICustomerOrderService.cs" />
-    <Compile Include="ManagementCenter\IProductService.cs" />
-    <Compile Include="ManagementCenter\IProductSupplierService.cs" />
-    <Compile Include="ManagementCenter\ISupplierOrderService.cs" />
-    <Compile Include="OrdersCenter\IProductService.cs" />
+    <Compile Include="Common\ICustomerMapper.cs" />
+    <Compile Include="IDataMapper.cs" />
+    <Compile Include="ManagementCenter\ICustomerOrderMapper.cs" />
+    <Compile Include="ManagementCenter\IProductMapper.cs" />
+    <Compile Include="ManagementCenter\IProductSupplierMapper.cs" />
+    <Compile Include="ManagementCenter\ISupplierOrderMapper.cs" />
+    <Compile Include="OrdersCenter\IProductMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

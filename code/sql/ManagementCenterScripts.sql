@@ -1,5 +1,5 @@
 use AsiTechManagementCenter
-
+--drop proc sp_DeleteProduct
 --drop proc sp_InsertProduct
 --drop table CustomerOrder
 --drop table SupplierOrder
@@ -24,8 +24,6 @@ begin
 	create synonym OrderCenterProduct for  [DVD-PC].[AsiTechOrderCenter].[dbo].[OrderCenterProduct]
 end
 
-
-
 create table ProductSupplier
 (
 	Id int primary key,
@@ -44,18 +42,20 @@ create table ManagementCenterProduct
 
 create table Customer
 (
-	Id int primary key,
-	Address varchar not null,
+	Id int primary key identity,
+	Address varchar(256) not null,
 	Email varchar(128)
 )
 
 create table CustomerOrder
 (
+	OrderDate datetime,
 	State int not null,
 	CustomerId int foreign key references Customer(Id),
 	ProductId int foreign key references ManagementCenterProduct(Id),
 	OrderAmount int, 
-	check(OrderAmount > 0)
+	check(OrderAmount > 0),
+	primary key(CustomerId,ProductId,OrderDate)
 )
 
 create table SupplierOrder

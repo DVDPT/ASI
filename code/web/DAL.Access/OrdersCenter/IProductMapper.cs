@@ -7,7 +7,7 @@ using DAL.Model.OrdersCenter;
 
 namespace DAL.Access.OrdersCenter
 {
-    public interface IProductService : IDataAccess<OrderCenterProduct, int>
+    public interface IProductMapper : IDataMapper<OrderCenterProduct, int>
     {
     }
 }

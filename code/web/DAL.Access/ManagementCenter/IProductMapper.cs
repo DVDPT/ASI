@@ -7,7 +7,7 @@ using DAL.Model.ManagementCenter;
 
 namespace DAL.Access.ManagementCenter
 {
-    public interface IProductSupplierService : IDataAccess<ProductSupplier,int>
+    public interface IProductMapper : IDataMapper<ManagementCenterProduct,int>
     {
     }
 }

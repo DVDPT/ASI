@@ -7,16 +7,15 @@ using DAL.Model.ManagementCenter;
 
 namespace DAL.Access.ManagementCenter
 {
-
-    public sealed class CustomerOrderKeys
+    public sealed class SupplierOrderKey
     {
         public DateTime OrderDate { get; set; }
-        public int CustomerId { get; set; }
         public int ProductId { get; set; }
+        public int SupplierId { get; set; }
     
     }
 
-    public interface ICustomerOrderService : IDataAccess<CustomerOrder, CustomerOrderKeys>
+    public interface ISupplierOrderMapper : IDataMapper<SupplierOrder, SupplierOrderKey>
     {
     }
 }

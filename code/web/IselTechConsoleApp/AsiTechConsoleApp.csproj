@@ -7,8 +7,8 @@
     <ProjectGuid>{13385328-E511-4A08-9081-5676672558FC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IselTechConsoleApp</RootNamespace>
-    <AssemblyName>IselTechConsoleApp</AssemblyName>
+    <RootNamespace>AsyTechConsoleApp</RootNamespace>
+    <AssemblyName>AsyTechConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

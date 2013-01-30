@@ -2,11 +2,11 @@
 
 namespace DAL.Access
 {
-    public interface IDataAccess
+    public interface IDataMapper
     {
     }
 
-    public interface IDataAccess<T, in K> : IDataAccess where T : class
+    public interface IDataMapper<T, in K> : IDataMapper where T : class
     {
         T Get(K key);
 

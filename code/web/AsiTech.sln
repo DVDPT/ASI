@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.EntityFramework", "DAL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Service", "Management.Service\Management.Service.csproj", "{C80F19F1-17FE-403C-A258-5C41F3267923}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Service", "Orders.Service\Orders.Service.csproj", "{4258F9BE-D279-4854-B12E-CC74ADD9806B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLauncher", "ServicesLauncher\ServicesLauncher.csproj", "{F7500577-7FEE-4D22-83CF-28D4C69E1E56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{C80F19F1-17FE-403C-A258-5C41F3267923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80F19F1-17FE-403C-A258-5C41F3267923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80F19F1-17FE-403C-A258-5C41F3267923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4258F9BE-D279-4854-B12E-CC74ADD9806B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4258F9BE-D279-4854-B12E-CC74ADD9806B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4258F9BE-D279-4854-B12E-CC74ADD9806B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4258F9BE-D279-4854-B12E-CC74ADD9806B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7500577-7FEE-4D22-83CF-28D4C69E1E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7500577-7FEE-4D22-83CF-28D4C69E1E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7500577-7FEE-4D22-83CF-28D4C69E1E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7500577-7FEE-4D22-83CF-28D4C69E1E56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
-﻿using Management.Service;
-using OrdersService;
+﻿using System.ServiceModel.Description;
+using Management.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,6 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ninject.Extensions.Wcf;
+using Notifications.Service;
+using Orders.Service;
 
 namespace ServicesLauncher
 {
@@ -56,7 +59,7 @@ namespace ServicesLauncher
                 OrdersServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
                 BrowseOrders.Visibility = Visibility.Visible;
 
-                _ordersHost = new ServiceHost(typeof(OrdersService.OrdersService));
+                _ordersHost = new ServiceHost(typeof(OrdersService));
                 _ordersHost.Open();
 
                 BrowseOrdersLink.NavigateUri = _ordersHost.BaseAddresses.First();
@@ -100,6 +103,28 @@ namespace ServicesLauncher
 
         private void StartNotificationsService_Click(object sender, RoutedEventArgs e)
         {
+            _notificationsServiceStatus = !_notificationsServiceStatus;
+
+            if (_notificationsServiceStatus)
+            {
+                StartNotificationsService.Content = "Stop";
+               NotificationsServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
+                BrowseManagement.Visibility = Visibility.Visible;
+
+                _notificationsHost = new ServiceHost(typeof(NotificationService));
+                _notificationsHost.Open();
+
+                BrowseManagementLink.NavigateUri = _notificationsHost.BaseAddresses.First();
+                BrowseManagement.Text += _notificationsHost.BaseAddresses.First().AbsoluteUri;
+            }
+            else
+            {
+                StartManagementService.Content = "Start";
+                ManagementServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) };
+                BrowseManagement.Visibility = Visibility.Collapsed;
+
+                _notificationsHost.Close();
+            } 
         }
 
 

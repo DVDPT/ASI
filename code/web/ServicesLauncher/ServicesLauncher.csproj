@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject.Extensions.Wcf">
+      <HintPath>..\Orders.Service\Bin\Ninject.Extensions.Wcf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
@@ -101,6 +104,10 @@
     <ProjectReference Include="..\Management.Service\Management.Service.csproj">
       <Project>{c80f19f1-17fe-403c-a258-5c41f3267923}</Project>
       <Name>Management.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notifications.Service\Notifications.Service.csproj">
+      <Project>{77b0c24e-c80f-406c-88da-e13941dc6c34}</Project>
+      <Name>Notifications.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orders.Service\Orders.Service.csproj">
       <Project>{4258f9be-d279-4854-b12e-cc74add9806b}</Project>

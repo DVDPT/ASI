@@ -14,7 +14,7 @@ using Management.Service.AsiTech.Services.Notification;
 namespace Management.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class CustomerOrderReceiverService : ICustomerOrderService, ICustomerService, ISuppliersService
+    public class CustomerOrderReceiverService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
     {
         [OperationBehavior(TransactionAutoComplete = false,
                          TransactionScopeRequired = true

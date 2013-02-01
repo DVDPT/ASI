@@ -80,12 +80,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICustomerOrderReceiverService.cs" />
     <Compile Include="ManagementService.svc.cs">
       <DependentUpon>ManagementService.svc</DependentUpon>
     </Compile>
     <Compile Include="ICustomerOrderService.cs" />
     <Compile Include="ICustomerService.cs" />
-    <Compile Include="ISupplierOrderService.cs" />
+    <Compile Include="ISuppliersService.cs" />
     <Compile Include="Model\CustomerModels.cs" />
     <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\SupplierModels.cs" />

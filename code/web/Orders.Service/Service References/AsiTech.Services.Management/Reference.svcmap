@@ -23,10 +23,9 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="e30013be-38ba-4d42-a8c1-51531f313068" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?xsd=xsd2" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="2d17c081-07f9-4557-bca9-a715e10dc1d0" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?xsd=xsd3" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="e0cf42a4-56cf-42ae-a36c-620a75811bd8" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?disco" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="24ad4b91-38b1-4175-914e-f4e739a80c9b" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?xsd=xsd0" />
     <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="3845fda8-e572-4770-acb4-35b056179a98" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?xsd=xsd1" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="e0cf42a4-56cf-42ae-a36c-620a75811bd8" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?disco" />
     <MetadataFile FileName="CustomerOrderReceiverService.wsdl" MetadataType="Wsdl" ID="b551008c-327e-4a02-b32f-294fea11640a" SourceId="1" SourceUrl="http://localhost:8080/management-ws/?wsdl" />
   </Metadata>
   <Extensions>

@@ -4,10 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAT.Model.OrdersCenter.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="DATModelOrdersCenterStoreContainer">
-          <EntitySet Name="Customer" EntityType="DAT.Model.OrdersCenter.Store.Customer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderCenterProduct" EntityType="DAT.Model.OrdersCenter.Store.OrderCenterProduct" store:Type="Tables" Schema="dbo" />
+      <Schema Namespace="DAL.Model.OrdersCenter.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DALModelOrdersCenterStoreContainer">
+          <EntitySet Name="Customer" EntityType="DAL.Model.OrdersCenter.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderCenterProduct" EntityType="DAL.Model.OrdersCenter.Store.OrderCenterProduct" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Customer">
           <Key>
@@ -30,12 +30,12 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DAT.Model.OrdersCenter" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DAL.Model.OrdersCenter" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OrdersCenterContext" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Customer" EntityType="DAT.Model.OrdersCenter.Customer" />
-          <EntitySet Name="OrderCenterProduct" EntityType="DAT.Model.OrdersCenter.OrderCenterProduct" />
+          <EntitySet Name="CustomerBase" EntityType="DAL.Model.OrdersCenter.CustomerBase" />
+          <EntitySet Name="OrderCenterProduct" EntityType="DAL.Model.OrdersCenter.OrderCenterProduct" />
         </EntityContainer>
-        <EntityType Name="Customer">
+        <EntityType Name="CustomerBase">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -57,9 +57,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DATModelOrdersCenterStoreContainer" CdmEntityContainer="OrdersCenterContext">
-          <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="DAT.Model.OrdersCenter.Customer">
+        <EntityContainerMapping StorageEntityContainer="DALModelOrdersCenterStoreContainer" CdmEntityContainer="OrdersCenterContext">
+          <EntitySetMapping Name="CustomerBase">
+            <EntityTypeMapping TypeName="DAL.Model.OrdersCenter.CustomerBase">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -68,7 +68,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderCenterProduct">
-            <EntityTypeMapping TypeName="DAT.Model.OrdersCenter.OrderCenterProduct">
+            <EntityTypeMapping TypeName="DAL.Model.OrdersCenter.OrderCenterProduct">
               <MappingFragment StoreEntitySet="OrderCenterProduct">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

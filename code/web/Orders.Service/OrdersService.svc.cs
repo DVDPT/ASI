@@ -1,6 +1,13 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
+using System.Transactions;
+using Business.Common.Error;
+using Business.Common.OrdersCenter;
 using DAL.Access.Common;
 using DAL.Access.OrdersCenter;
+using DAL.Model.Common;
+using DAL.Model.OrdersCenter;
+using Ninject;
 using Orders.Service.AsiTech.Services.Management;
 using Orders.Service.AsiTech.Services.Notification;
 using Orders.Service.Model;
@@ -9,29 +16,66 @@ namespace Orders.Service
 {
     public class OrdersService : IOrdersService
     {
-        private readonly ICustomerOrderReceiverService _customerOrderReceiverService;
-        private readonly ICustomerMapper _customerMapper;
-        private readonly IProductMapper _productMapper;
-        private readonly INotificationService _notificationService;
 
 
-        public OrdersService(
-            ICustomerOrderReceiverService customerOrderReceiverService,
-            INotificationService notificationService,
-            ICustomerMapper customerMapper,
-            IProductMapper productMapper
-            )
-        {
-            _customerOrderReceiverService = customerOrderReceiverService;
-            _customerMapper = customerMapper;
-            _productMapper = productMapper;
-            _notificationService = notificationService;
-        }
-
-        [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)]
+        [OperationBehavior]
         public void PlaceOrder(OrderModel order)
         {
+            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            {
+                CustomerBase customer;
+                using (var mappers = new OrdersDataMapperContainer())
+                {
+                    var prod = EnsureProductExistance(mappers.ProductMapper, order.ProductCode);
+                    customer = EnsureCustomerExistance(mappers.CustomerMapper, order.CustomerId);
 
+
+                    using (var orderService = new CustomerOrderReceiverServiceClient())
+                    {
+                        orderService.HandleOrder(new CustomerOrderModel
+                                                     {
+                                                         CustomerId = order.CustomerId,
+                                                         ProductCode = order.ProductCode,
+                                                         Quantity = order.Quantity
+                                                     });
+                    }
+
+                    transaction.Complete();
+                }
+
+                //try
+                //{
+                //    using (var notification = new NotificationServiceClient())
+                //    {
+                //        notification.SendEmail(customer.Email, "cenas");
+                //    }
+                //}
+                //catch (Exception)
+                //{
+                //    // if it fails ignore.
+                //}
+
+            }
+        }
+
+        private CustomerBase EnsureCustomerExistance(ICustomerMapper mapper, int customerId)
+        {
+            var customer = mapper.Get(customerId);
+
+            if (customer == null)
+                throw new CustomerNotFoundException(customerId);
+
+            return customer;
+        }
+
+        private OrderCenterProduct EnsureProductExistance(IProductMapper mapper, int id)
+        {
+            var product = mapper.Get(id);
+
+            if (product == null)
+                throw new ProductNotFoundException(id);
+
+            return product;
         }
     }
 }

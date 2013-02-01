@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ninject;
 using Ninject.Extensions.Wcf;
 using Notifications.Service;
 using Orders.Service;
@@ -40,7 +41,7 @@ namespace ServicesLauncher
             InitializeComponent();
             BrowseOrdersLink.RequestNavigate += HandleRequest;
             BrowseManagementLink.RequestNavigate += HandleRequest;
-            BrowseNotificationsLink.RequestNavigate += HandleRequest;   
+            BrowseNotificationsLink.RequestNavigate += HandleRequest;
         }
 
         private void HandleRequest(object sender, RequestNavigateEventArgs e)
@@ -51,19 +52,19 @@ namespace ServicesLauncher
 
         private void StartOrdersService_Click(object sender, RoutedEventArgs e)
         {
-            _ordersServiceStatus = !_ordersServiceStatus;   
- 
+            _ordersServiceStatus = !_ordersServiceStatus;
+
             if (_ordersServiceStatus)
             {
                 StartOrdersService.Content = "Stop";
                 OrdersServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
                 BrowseOrders.Visibility = Visibility.Visible;
-
                 _ordersHost = new ServiceHost(typeof(OrdersService));
                 _ordersHost.Open();
 
                 BrowseOrdersLink.NavigateUri = _ordersHost.BaseAddresses.First();
                 BrowseOrders.Text += _ordersHost.BaseAddresses.First().AbsoluteUri;
+
             }
             else
             {
@@ -72,7 +73,7 @@ namespace ServicesLauncher
                 BrowseOrders.Visibility = Visibility.Collapsed;
 
                 _ordersHost.Close();
-            }         
+            }
         }
 
         private void StartManagementService_Click(object sender, RoutedEventArgs e)
@@ -98,7 +99,7 @@ namespace ServicesLauncher
                 BrowseManagement.Visibility = Visibility.Collapsed;
 
                 _managementHost.Close();
-            } 
+            }
         }
 
         private void StartNotificationsService_Click(object sender, RoutedEventArgs e)
@@ -108,7 +109,7 @@ namespace ServicesLauncher
             if (_notificationsServiceStatus)
             {
                 StartNotificationsService.Content = "Stop";
-               NotificationsServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
+                NotificationsServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
                 BrowseManagement.Visibility = Visibility.Visible;
 
                 _notificationsHost = new ServiceHost(typeof(NotificationService));
@@ -124,7 +125,7 @@ namespace ServicesLauncher
                 BrowseManagement.Visibility = Visibility.Collapsed;
 
                 _notificationsHost.Close();
-            } 
+            }
         }
 
 
@@ -162,8 +163,10 @@ namespace ServicesLauncher
                     }
                 }
             }
-            
+
             base.OnClosed(e);
         }
     }
+
+
 }

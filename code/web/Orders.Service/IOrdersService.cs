@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using Business.Common.Error;
 using Orders.Service.Model;
 
 namespace Orders.Service

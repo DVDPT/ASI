@@ -6,12 +6,13 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using DAL.Model.ManagementCenter;
+using Management.Service.Model;
 
 namespace Management.Service
 {
     public class CustomerOrderReceiverService : ICustomerOrderReceiverService
     {
-        public void HandleOrder(CustomerOrder order)
+        public void HandleOrder(CustomerOrderModel order)
         {
             
         }

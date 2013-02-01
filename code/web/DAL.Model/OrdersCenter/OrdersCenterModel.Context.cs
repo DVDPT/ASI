@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DAL.Model.Common;
+
 namespace DAL.Model.OrdersCenter
 {
     using System;
@@ -25,7 +27,7 @@ namespace DAL.Model.OrdersCenter
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<CustomerBase> Customer { get; set; }
         public DbSet<OrderCenterProduct> OrderCenterProduct { get; set; }
     }
 }

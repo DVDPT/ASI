@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using DAL.Model.ManagementCenter;
+using Management.Service.Model;
 
 namespace Management.Service
 {
@@ -13,7 +14,7 @@ namespace Management.Service
     public interface ICustomerOrderReceiverService
     {
         [OperationContract(IsOneWay = true)]
-        void HandleOrder(CustomerOrder order);
+        void HandleOrder(CustomerOrderModel order);
     }
 
 

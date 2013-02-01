@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -55,8 +59,11 @@
     <Reference Include="Ninject.Web.Common">
       <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -83,16 +90,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="OrdersService.svc" />
-    <Content Include="Service References\AsiTech.Services.Management\CustomerOrderReceiverService.wsdl" />
-    <Content Include="Service References\AsiTech.Services.Management\item.disco" />
-    <Content Include="Service References\AsiTech.Services.Management\configuration91.svcinfo" />
-    <Content Include="Service References\AsiTech.Services.Management\configuration.svcinfo" />
-    <Content Include="Service References\AsiTech.Services.Management\Reference.svcmap">
+    <None Include="Service References\AsiTech.Services.Management\CustomerOrderReceiverService.wsdl" />
+    <None Include="Service References\AsiTech.Services.Management\item.disco" />
+    <None Include="Service References\AsiTech.Services.Management\configuration91.svcinfo" />
+    <None Include="Service References\AsiTech.Services.Management\configuration.svcinfo" />
+    <None Include="Service References\AsiTech.Services.Management\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Service References\AsiTech.Services.Notification\item.disco" />
     <Content Include="Service References\AsiTech.Services.Notification\configuration91.svcinfo" />
     <Content Include="Service References\AsiTech.Services.Notification\configuration.svcinfo" />
@@ -103,11 +109,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Model\OrderModel.cs" />
-    <Compile Include="Module\OrderServiceModule.cs" />
     <Compile Include="OrdersService.svc.cs">
       <DependentUpon>OrdersService.svc</DependentUpon>
     </Compile>
@@ -132,9 +134,6 @@
     <None Include="Service References\AsiTech.Services.Management\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AsiTech.Services.Management\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\AsiTech.Services.Management\item2.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -156,6 +155,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{3D975219-7392-4E88-9412-152A9048A7A3}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
       <Project>{ab2ee858-2db4-440b-82e4-4336b12f8ed2}</Project>
       <Name>DAL.Access</Name>
@@ -163,6 +166,10 @@
     <ProjectReference Include="..\DAL.EntityFramework\DAL.EntityFramework.csproj">
       <Project>{8C19A9AF-5C0D-4909-A3AB-B363831616B4}</Project>
       <Name>DAL.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.Model\DAL.Model.csproj">
+      <Project>{AF9CBAEC-0BC0-4B2C-8D2A-638F35237F6C}</Project>
+      <Name>DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

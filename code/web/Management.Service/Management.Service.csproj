@@ -69,6 +69,7 @@
       <DependentUpon>CustomerOrderReceiverService.svc</DependentUpon>
     </Compile>
     <Compile Include="ICustomerOrderReceiverService.cs" />
+    <Compile Include="Model\CustomerOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,10 +85,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
+      <Project>{ab2ee858-2db4-440b-82e4-4336b12f8ed2}</Project>
+      <Name>DAL.Access</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.EntityFramework\DAL.EntityFramework.csproj">
+      <Project>{8c19a9af-5c0d-4909-a3ab-b363831616b4}</Project>
+      <Name>DAL.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL.Model\DAL.Model.csproj">
       <Project>{AF9CBAEC-0BC0-4B2C-8D2A-638F35237F6C}</Project>
       <Name>DAL.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

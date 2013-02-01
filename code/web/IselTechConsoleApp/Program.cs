@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Model.ManagementCenter;
+using DAL.Model.OrdersCenter;
 
 namespace IselTechConsoleApp
 {
@@ -11,9 +12,13 @@ namespace IselTechConsoleApp
     {
         static void Main(string[] args)
         {
-            var ctx = new ManagementCenterContext();
-            ctx.Customer.Add(new Customer {Address = "cenas", Email = "a@a.pt"});
-            ctx.SaveChanges();
+            var ctx = new OrdersCenterContext();
+            var c = ctx.Customer.ToList();
+            var xot = c;
+
+            var ctx2 = new ManagementCenterContext();
+            var x = ctx2.Customer.ToList();
+            var s = x;
 
         }
     }

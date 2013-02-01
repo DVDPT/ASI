@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLauncher", "Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications.Service", "Notifications.Service\Notifications.Service.csproj", "{77B0C24E-C80F-406C-88DA-E13941DC6C34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Common", "Business.Common\Business.Common.csproj", "{3D975219-7392-4E88-9412-152A9048A7A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{77B0C24E-C80F-406C-88DA-E13941DC6C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B0C24E-C80F-406C-88DA-E13941DC6C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B0C24E-C80F-406C-88DA-E13941DC6C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D975219-7392-4E88-9412-152A9048A7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D975219-7392-4E88-9412-152A9048A7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D975219-7392-4E88-9412-152A9048A7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D975219-7392-4E88-9412-152A9048A7A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

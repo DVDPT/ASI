@@ -15,33 +15,21 @@ namespace Orders.Service.AsiTech.Services.Management {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerOrder", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.ManagementCenter")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerOrderModel", Namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model")]
     [System.SerializableAttribute()]
-    public partial class CustomerOrder : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CustomerOrderModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.Customer CustomerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CustomerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.ManagementCenterProduct ManagementCenterProductField;
+        private int ProductCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> OrderAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime OrderDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StateField;
+        private int QuantityField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -50,19 +38,6 @@ namespace Orders.Service.AsiTech.Services.Management {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.Customer Customer {
-            get {
-                return this.CustomerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerField, value) != true)) {
-                    this.CustomerField = value;
-                    this.RaisePropertyChanged("Customer");
-                }
             }
         }
         
@@ -80,558 +55,27 @@ namespace Orders.Service.AsiTech.Services.Management {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.ManagementCenterProduct ManagementCenterProduct {
+        public int ProductCode {
             get {
-                return this.ManagementCenterProductField;
+                return this.ProductCodeField;
             }
             set {
-                if ((object.ReferenceEquals(this.ManagementCenterProductField, value) != true)) {
-                    this.ManagementCenterProductField = value;
-                    this.RaisePropertyChanged("ManagementCenterProduct");
+                if ((this.ProductCodeField.Equals(value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> OrderAmount {
+        public int Quantity {
             get {
-                return this.OrderAmountField;
+                return this.QuantityField;
             }
             set {
-                if ((this.OrderAmountField.Equals(value) != true)) {
-                    this.OrderAmountField = value;
-                    this.RaisePropertyChanged("OrderAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime OrderDate {
-            get {
-                return this.OrderDateField;
-            }
-            set {
-                if ((this.OrderDateField.Equals(value) != true)) {
-                    this.OrderDateField = value;
-                    this.RaisePropertyChanged("OrderDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductId {
-            get {
-                return this.ProductIdField;
-            }
-            set {
-                if ((this.ProductIdField.Equals(value) != true)) {
-                    this.ProductIdField = value;
-                    this.RaisePropertyChanged("ProductId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Customer", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.ManagementCenter")]
-    [System.SerializableAttribute()]
-    public partial class Customer : Orders.Service.AsiTech.Services.Management.CustomerBase {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.CustomerOrder[] CustomerOrderField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.CustomerOrder[] CustomerOrder {
-            get {
-                return this.CustomerOrderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerOrderField, value) != true)) {
-                    this.CustomerOrderField = value;
-                    this.RaisePropertyChanged("CustomerOrder");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ManagementCenterProduct", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.ManagementCenter")]
-    [System.SerializableAttribute()]
-    public partial class ManagementCenterProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AvailableAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.CustomerOrder[] CustomerOrderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double PriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.ProductSupplier ProductSupplierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> SupplierIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.SupplierOrder[] SupplierOrderField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AvailableAmount {
-            get {
-                return this.AvailableAmountField;
-            }
-            set {
-                if ((this.AvailableAmountField.Equals(value) != true)) {
-                    this.AvailableAmountField = value;
-                    this.RaisePropertyChanged("AvailableAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.CustomerOrder[] CustomerOrder {
-            get {
-                return this.CustomerOrderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerOrderField, value) != true)) {
-                    this.CustomerOrderField = value;
-                    this.RaisePropertyChanged("CustomerOrder");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Price {
-            get {
-                return this.PriceField;
-            }
-            set {
-                if ((this.PriceField.Equals(value) != true)) {
-                    this.PriceField = value;
-                    this.RaisePropertyChanged("Price");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.ProductSupplier ProductSupplier {
-            get {
-                return this.ProductSupplierField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductSupplierField, value) != true)) {
-                    this.ProductSupplierField = value;
-                    this.RaisePropertyChanged("ProductSupplier");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> SupplierId {
-            get {
-                return this.SupplierIdField;
-            }
-            set {
-                if ((this.SupplierIdField.Equals(value) != true)) {
-                    this.SupplierIdField = value;
-                    this.RaisePropertyChanged("SupplierId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.SupplierOrder[] SupplierOrder {
-            get {
-                return this.SupplierOrderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SupplierOrderField, value) != true)) {
-                    this.SupplierOrderField = value;
-                    this.RaisePropertyChanged("SupplierOrder");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerBase", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.Common")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Orders.Service.AsiTech.Services.Management.Customer))]
-    public partial class CustomerBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductSupplier", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.ManagementCenter")]
-    [System.SerializableAttribute()]
-    public partial class ProductSupplier : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.ManagementCenterProduct[] ManagementCenterProductField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.SupplierOrder[] SupplierOrderField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.ManagementCenterProduct[] ManagementCenterProduct {
-            get {
-                return this.ManagementCenterProductField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagementCenterProductField, value) != true)) {
-                    this.ManagementCenterProductField = value;
-                    this.RaisePropertyChanged("ManagementCenterProduct");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.SupplierOrder[] SupplierOrder {
-            get {
-                return this.SupplierOrderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SupplierOrderField, value) != true)) {
-                    this.SupplierOrderField = value;
-                    this.RaisePropertyChanged("SupplierOrder");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SupplierOrder", Namespace="http://schemas.datacontract.org/2004/07/DAL.Model.ManagementCenter")]
-    [System.SerializableAttribute()]
-    public partial class SupplierOrder : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.ManagementCenterProduct ManagementCenterProductField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> OrderAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime OrderDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Orders.Service.AsiTech.Services.Management.ProductSupplier ProductSupplierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SupplierIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.ManagementCenterProduct ManagementCenterProduct {
-            get {
-                return this.ManagementCenterProductField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagementCenterProductField, value) != true)) {
-                    this.ManagementCenterProductField = value;
-                    this.RaisePropertyChanged("ManagementCenterProduct");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> OrderAmount {
-            get {
-                return this.OrderAmountField;
-            }
-            set {
-                if ((this.OrderAmountField.Equals(value) != true)) {
-                    this.OrderAmountField = value;
-                    this.RaisePropertyChanged("OrderAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime OrderDate {
-            get {
-                return this.OrderDateField;
-            }
-            set {
-                if ((this.OrderDateField.Equals(value) != true)) {
-                    this.OrderDateField = value;
-                    this.RaisePropertyChanged("OrderDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductId {
-            get {
-                return this.ProductIdField;
-            }
-            set {
-                if ((this.ProductIdField.Equals(value) != true)) {
-                    this.ProductIdField = value;
-                    this.RaisePropertyChanged("ProductId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Orders.Service.AsiTech.Services.Management.ProductSupplier ProductSupplier {
-            get {
-                return this.ProductSupplierField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductSupplierField, value) != true)) {
-                    this.ProductSupplierField = value;
-                    this.RaisePropertyChanged("ProductSupplier");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SupplierId {
-            get {
-                return this.SupplierIdField;
-            }
-            set {
-                if ((this.SupplierIdField.Equals(value) != true)) {
-                    this.SupplierIdField = value;
-                    this.RaisePropertyChanged("SupplierId");
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
                 }
             }
         }
@@ -651,10 +95,10 @@ namespace Orders.Service.AsiTech.Services.Management {
     public interface ICustomerOrderReceiverService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICustomerOrderReceiverService/HandleOrder")]
-        void HandleOrder(Orders.Service.AsiTech.Services.Management.CustomerOrder order);
+        void HandleOrder(Orders.Service.AsiTech.Services.Management.CustomerOrderModel order);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICustomerOrderReceiverService/HandleOrder")]
-        System.Threading.Tasks.Task HandleOrderAsync(Orders.Service.AsiTech.Services.Management.CustomerOrder order);
+        System.Threading.Tasks.Task HandleOrderAsync(Orders.Service.AsiTech.Services.Management.CustomerOrderModel order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -684,11 +128,11 @@ namespace Orders.Service.AsiTech.Services.Management {
                 base(binding, remoteAddress) {
         }
         
-        public void HandleOrder(Orders.Service.AsiTech.Services.Management.CustomerOrder order) {
+        public void HandleOrder(Orders.Service.AsiTech.Services.Management.CustomerOrderModel order) {
             base.Channel.HandleOrder(order);
         }
         
-        public System.Threading.Tasks.Task HandleOrderAsync(Orders.Service.AsiTech.Services.Management.CustomerOrder order) {
+        public System.Threading.Tasks.Task HandleOrderAsync(Orders.Service.AsiTech.Services.Management.CustomerOrderModel order) {
             return base.Channel.HandleOrderAsync(order);
         }
     }

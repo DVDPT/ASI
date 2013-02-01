@@ -57,9 +57,7 @@ namespace Orders.Service
                     }
 
                     transaction.Complete();
-                }
-
-               
+                }              
 
             }
         }

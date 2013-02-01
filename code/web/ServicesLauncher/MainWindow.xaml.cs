@@ -115,14 +115,14 @@ namespace ServicesLauncher
                 _notificationsHost = new ServiceHost(typeof(NotificationService));
                 _notificationsHost.Open();
 
-                BrowseManagementLink.NavigateUri = _notificationsHost.BaseAddresses.First();
-                BrowseManagement.Text += _notificationsHost.BaseAddresses.First().AbsoluteUri;
+                BrowseNotificationsLink.NavigateUri = _notificationsHost.BaseAddresses.First();
+                BrowseNotifications.Text += _notificationsHost.BaseAddresses.First().AbsoluteUri;
             }
             else
             {
-                StartManagementService.Content = "Start";
-                ManagementServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) };
-                BrowseManagement.Visibility = Visibility.Collapsed;
+                StartNotificationsService.Content = "Start";
+                NotificationsServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) };
+                BrowseNotifications.Visibility = Visibility.Collapsed;
 
                 _notificationsHost.Close();
             }

@@ -49,6 +49,7 @@
     <Compile Include="Error\CustomerNotFoundException.cs" />
     <Compile Include="Error\ProductNotFoundException.cs" />
     <Compile Include="ManagementCenter\ManagementDataMapperContainer.cs" />
+    <Compile Include="ManagementCenter\OrderState.cs" />
     <Compile Include="OrdersCenter\OrdersDataMapperContainer.cs" />
     <Compile Include="MapperContainerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

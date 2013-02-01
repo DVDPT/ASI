@@ -10,11 +10,15 @@ using Management.Service.Model;
 
 namespace Management.Service
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class CustomerOrderReceiverService : ICustomerOrderReceiverService
     {
+        [OperationBehavior(TransactionAutoComplete = false,
+                         TransactionScopeRequired = true
+       )]
         public void HandleOrder(CustomerOrderModel order)
         {
-            
+
         }
     }
 }

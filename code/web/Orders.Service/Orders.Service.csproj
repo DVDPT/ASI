@@ -99,13 +99,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\AsiTech.Services.Notification\item.disco" />
-    <Content Include="Service References\AsiTech.Services.Notification\configuration91.svcinfo" />
-    <Content Include="Service References\AsiTech.Services.Notification\configuration.svcinfo" />
-    <Content Include="Service References\AsiTech.Services.Notification\Reference.svcmap">
+    <None Include="Service References\AsiTech.Services.Notification\item.disco" />
+    <None Include="Service References\AsiTech.Services.Notification\configuration91.svcinfo" />
+    <None Include="Service References\AsiTech.Services.Notification\configuration.svcinfo" />
+    <None Include="Service References\AsiTech.Services.Notification\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +146,7 @@
     <None Include="Service References\AsiTech.Services.Notification\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\AsiTech.Services.Notification\NotificationService.wsdl" />
+    <None Include="Service References\AsiTech.Services.Notification\NotificationService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

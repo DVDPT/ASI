@@ -15,10 +15,10 @@ namespace Orders.Service.AsiTech.Services.Notification {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AsiTech.Services.Notification.INotificationService")]
     public interface INotificationService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/SendEmail", ReplyAction="http://tempuri.org/INotificationService/SendEmailResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/INotificationService/SendEmail")]
         void SendEmail(string email, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/SendEmail", ReplyAction="http://tempuri.org/INotificationService/SendEmailResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/INotificationService/SendEmail")]
         System.Threading.Tasks.Task SendEmailAsync(string email, string message);
     }
     

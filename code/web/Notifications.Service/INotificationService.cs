@@ -12,7 +12,7 @@ namespace Notifications.Service
     [ServiceContract]
     public interface INotificationService
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void SendEmail(string email, string message);
     }
 

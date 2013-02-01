@@ -21,12 +21,17 @@ namespace Orders.Service
         [OperationBehavior]
         public void PlaceOrder(OrderModel order)
         {
+            if (order.Quantity <= 0)
+                throw new NotSupportedException();
+
             using (var transaction = new TransactionScope(TransactionScopeOption.Required))
             {
                 CustomerBase customer;
+
                 using (var mappers = new OrdersDataMapperContainer())
                 {
-                    var prod = EnsureProductExistance(mappers.ProductMapper, order.ProductCode);
+                    EnsureProductExistance(mappers.ProductMapper, order.ProductCode);
+                   
                     customer = EnsureCustomerExistance(mappers.CustomerMapper, order.CustomerId);
 
 
@@ -39,21 +44,22 @@ namespace Orders.Service
                                                          Quantity = order.Quantity
                                                      });
                     }
+                    try
+                    {
+                        using (var notification = new NotificationServiceClient())
+                        {
+                            notification.SendEmail(customer.Email, "cenas");
+                        }
+                    }
+                    catch 
+                    {
+                        // if it fails ignore.
+                    }
 
                     transaction.Complete();
                 }
 
-                //try
-                //{
-                //    using (var notification = new NotificationServiceClient())
-                //    {
-                //        notification.SendEmail(customer.Email, "cenas");
-                //    }
-                //}
-                //catch (Exception)
-                //{
-                //    // if it fails ignore.
-                //}
+               
 
             }
         }

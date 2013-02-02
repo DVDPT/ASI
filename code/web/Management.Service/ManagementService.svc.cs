@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Business.Common.Notification;
+using DAL.Model.Common;
 using DAL.Model.ManagementCenter;
 using Management.Service.Model;
 using System.Transactions;
@@ -16,72 +18,79 @@ namespace Management.Service
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
     {
-        [OperationBehavior(TransactionAutoComplete = false,
+        #region ICustomerOrderReceiverService
+        [OperationBehavior(TransactionAutoComplete = true,
                          TransactionScopeRequired = true
         )]
         public void HandleOrder(CreateOrderModel orderModel)
         {
-            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+            using (var mappers = new ManagementDataMapperContainer())
             {
-                using (var mappers = new ManagementDataMapperContainer())
+                var product = mappers.ProductMapper.Get(orderModel.ProductCode);
+                var customer = mappers.CustomerMapper.Get(orderModel.CustomerId);
+
+                if (product.AvailableAmount < orderModel.Quantity)
                 {
-                    var customerOrderMapper = mappers.CustomerOrderMapper;
-
-                    var order = customerOrderMapper.Query().SingleOrDefault(o => o.ProductId == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == DateTime.Now);
-
-                    if (order == null)
-                    {
-                        customerOrderMapper.Create(new CustomerOrder
-                        {
-                            CustomerId = orderModel.CustomerId,
-                            ProductId = orderModel.ProductCode,
-                            OrderAmount = orderModel.Quantity,
-                            OrderDate = DateTime.Now,
-                            State = (int)OrderState.Processing
-                        });
-                    }
-                    else
-                    {
-                        order.OrderAmount += orderModel.Quantity;
-                        customerOrderMapper.Update(order);
-                    }
+                    //
+                    //  Order can't be satisfied, notify the user.
+                    //
+                    NotificationHelper.NotifyOrderCantBeHeld(customer, product);
+                    return;
                 }
+
+
+                product.AvailableAmount -= orderModel.Quantity;
+                mappers.ProductMapper.Update(product);
+
+                var customerOrderMapper = mappers.CustomerOrderMapper;
+
+                customerOrderMapper.Create(new CustomerOrder
+                {
+                    CustomerId = orderModel.CustomerId,
+                    ProductId = orderModel.ProductCode,
+                    OrderAmount = orderModel.Quantity,
+                    OrderDate = DateTime.Now,
+                    State = (int)OrderState.Processing
+                });
+
+                NotificationHelper.NotifyOrderIsBeingProcessed(customer, product);
             }
+
         }
+
+
+
+        #endregion
+
+        #region ICustomerOrderService
 
         [TransactionFlow(TransactionFlowOption.Allowed)]
         public void ChangeOrderState(OrderModel orderModel, OrderState state)
         {
-            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
+
+            using (var mappers = new ManagementDataMapperContainer())
             {
-                using (var mappers = new ManagementDataMapperContainer())
+                var orderMapper = mappers.CustomerOrderMapper;
+
+                var order = orderMapper.Query().SingleOrDefault(o => o.ProductId == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == orderModel.OrderDate);
+
+                if (order == null)
                 {
-                    var orderMapper = mappers.CustomerOrderMapper;
-
-                    var order = orderMapper.Query().SingleOrDefault(o => o.ProductId == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == orderModel.OrderDate);
-
-                    if (order == null)
-                    {
-                        throw new ArgumentException("Order doesn't exist!");
-                    }
-
-                    order.State = (int) state;
-                    orderMapper.Update(order);
-
-                    try
-                    {
-                        using (var notification = new NotificationServiceClient())
-                        {
-                            notification.SendEmail(order.Customer.Email, "Your order state was changed to " + state);
-                        }
-                    }
-                    catch
-                    {
-                        // if it fails ignore.
-                    }
+                    throw new ArgumentException("Order doesn't exist!");
                 }
+
+                order.State = (int)state;
+                orderMapper.Update(order);
+
+                NotificationHelper.NotifyOrderChangedState(mappers.CustomerMapper.Get(orderModel.CustomerId),
+                                                           mappers.ProductMapper.Get(orderModel.ProductCode),
+                                                           state.ToString());
+
             }
         }
+        #endregion
+
+        #region ICustomerService
 
         [TransactionFlow(TransactionFlowOption.Allowed)]
         public void CreateCustomer(CreateCustomerModel model)
@@ -116,7 +125,7 @@ namespace Management.Service
                 var customerMapper = mappers.CustomerMapper;
 
                 return customerMapper.Query().Select
-                (   c => new CustomerModel 
+                (c => new CustomerModel
                     {
                         Number = c.Id,
                         Address = c.Address,
@@ -126,6 +135,9 @@ namespace Management.Service
             }
         }
 
+        #endregion
+
+        #region ISuppliersService
         [TransactionFlow(TransactionFlowOption.Allowed)]
         public void OrderProduct(OrderProductModel model)
         {
@@ -159,5 +171,6 @@ namespace Management.Service
                 ).ToArray();
             }
         }
+        #endregion
     }
 }

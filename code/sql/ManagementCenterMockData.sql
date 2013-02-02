@@ -21,3 +21,8 @@ exec sp_InsertProduct @id = 7, @name='Renault AE' , @supplierId = 3, @price =120
 exec sp_InsertProduct @id = 8, @name='Ruffles' , @supplierId = 4, @price =1.12, @startAmount=100
 exec sp_InsertProduct @id = 9, @name='Pantene Pro V' , @supplierId = 5, @price =4.12, @startAmount=100
 exec sp_InsertProduct @id = 10, @name='Nexus 4' , @supplierId = 2, @price =280, @startAmount=100
+
+insert into Customer values(0,'add','a@a.pt')
+insert into Customer values(1,'add1','b@a.pt')
+insert into Customer values(2,'add2','c@a.pt')
+insert into Customer values(3,'add3','c@a.pt')

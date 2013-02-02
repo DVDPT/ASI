@@ -50,11 +50,14 @@
     <Compile Include="Error\ProductNotFoundException.cs" />
     <Compile Include="ManagementCenter\ManagementDataMapperContainer.cs" />
     <Compile Include="ManagementCenter\OrderState.cs" />
+    <Compile Include="Notification\NotificationHelper.cs" />
     <Compile Include="OrdersCenter\OrdersDataMapperContainer.cs" />
     <Compile Include="MapperContainerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.Access\DAL.Access.csproj">
       <Project>{AB2EE858-2DB4-440B-82E4-4336B12F8ED2}</Project>

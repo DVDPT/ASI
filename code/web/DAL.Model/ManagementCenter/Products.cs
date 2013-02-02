@@ -14,6 +14,16 @@ namespace DAL.Model.ManagementCenter
     
     public partial class Products
     {
+        public Products()
+        {
+            this.CustomerOrder = new HashSet<CustomerOrder>();
+            this.SupplierOrder = new HashSet<SupplierOrder>();
+        }
+
+        
+        public virtual ICollection<CustomerOrder> CustomerOrder { get; set; }
+        public virtual ProductSupplier ProductSupplier { get; set; }
+        public virtual ICollection<SupplierOrder> SupplierOrder { get; set; }
         public int Id { get; set; }
         public double Price { get; set; }
         public Nullable<int> AvailableAmount { get; set; }

@@ -17,9 +17,17 @@ namespace DAL.EntityFramework.Services.Management
             _ctx = ctx;
         }
 
+        private ManagementCenterProduct FillName(ManagementCenterProduct mp)
+        {
+            if (mp == null) return null;
+            
+            mp.Name = _ctx.Products.FirstOrDefault(p => p.Id.Equals(mp.Id)).Name;
+            return mp;
+        }
+
         public ManagementCenterProduct Get(int key)
         {
-            return _ctx.ManagementCenterProduct.FirstOrDefault(p => p.Id.Equals(key));
+            return FillName(_ctx.ManagementCenterProduct.FirstOrDefault(p => p.Id.Equals(key)));
         }
 
         public IQueryable<ManagementCenterProduct> Query()

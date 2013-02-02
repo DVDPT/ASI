@@ -20,8 +20,8 @@
             </Grid.ColumnDefinitions>
             <TextBlock Margin="0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <TextBlock Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBox x:Name="txtAddress" Grid.Column="1" Height="23" Margin="0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtEmail" Grid.Column="1" Height="23" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtAddress" Grid.Column="1" Height="23" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="257"/>
+            <TextBox x:Name="txtEmail" Grid.Column="1" Height="23" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
         </Grid>
         <Button x:Name="bCreate" Content="Create" Margin="0" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Click="bCreate_Click"/>

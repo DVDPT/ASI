@@ -44,6 +44,18 @@
   <wsdl:message name="ISuppliersService_AllSuppliers_OutputMessage">
     <wsdl:part name="parameters" element="tns:AllSuppliersResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductService_AllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllProducts" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_AllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_ProductsFrom_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProductsFrom" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_ProductsFrom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProductsFromResponse" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="ICustomerOrderReceiverService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="HandleOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderReceiverService/HandleOrder" message="tns:ICustomerOrderReceiverService_HandleOrder_InputMessage" />
@@ -73,6 +85,16 @@
     <wsdl:operation name="AllSuppliers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISuppliersService/AllSuppliers" message="tns:ISuppliersService_AllSuppliers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISuppliersService/AllSuppliersResponse" message="tns:ISuppliersService_AllSuppliers_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IProductService">
+    <wsdl:operation name="AllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/AllProducts" message="tns:IProductService_AllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/AllProductsResponse" message="tns:IProductService_AllProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProductsFrom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/ProductsFrom" message="tns:IProductService_ProductsFrom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/ProductsFromResponse" message="tns:IProductService_ProductsFrom_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetMsmqBinding_ICustomerOrderReceiverService" type="tns:ICustomerOrderReceiverService">
@@ -136,6 +158,27 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IProductService" type="tns:IProductService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AllProducts">
+      <soap:operation soapAction="http://tempuri.org/IProductService/AllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductsFrom">
+      <soap:operation soapAction="http://tempuri.org/IProductService/ProductsFrom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ManagementService">
     <wsdl:port name="NetMsmqBinding_ICustomerOrderReceiverService" binding="tns:NetMsmqBinding_ICustomerOrderReceiverService">
       <soap12:address location="net.msmq://joaoportatil/private/CustomerOrderMessageQueue" />
@@ -154,6 +197,9 @@
     </wsdl:port>
     <wsdl:port name="BasicHttpBinding_ISuppliersService" binding="tns:BasicHttpBinding_ISuppliersService">
       <soap:address location="http://localhost:8080/management-ws/suppliers/" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IProductService" binding="tns:BasicHttpBinding_IProductService">
+      <soap:address location="http://localhost:8080/management-ws/products/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

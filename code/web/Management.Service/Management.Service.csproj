@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICustomerOrderReceiverService.cs" />
+    <Compile Include="IProductService.cs" />
     <Compile Include="ManagementService.svc.cs">
       <DependentUpon>ManagementService.svc</DependentUpon>
     </Compile>
@@ -89,6 +90,7 @@
     <Compile Include="ISuppliersService.cs" />
     <Compile Include="Model\CustomerModels.cs" />
     <Compile Include="Model\OrderModel.cs" />
+    <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\SupplierModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AsiTech.Services.Notification\Reference.cs">

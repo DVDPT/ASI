@@ -14,7 +14,7 @@ using Management.Service.AsiTech.Services.Notification;
 namespace Management.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
+    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService, IProductService
     {
         [OperationBehavior(TransactionAutoComplete = false,
                          TransactionScopeRequired = true
@@ -157,6 +157,41 @@ namespace Management.Service
                         Name = s.Name
                     }
                 ).ToArray();
+            }
+        }
+
+        public ProductModel[] AllProducts()
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var productMapper = mappers.ProductMapper;
+
+                return productMapper.Query().Select(p => new ProductModel
+                {
+                    Code = p.Id,
+                    Name = p.Id.ToString(),
+                    Quantity = p.AvailableAmount,
+                    Supplier = p.SupplierId
+                }).ToArray();
+            }
+        }
+
+
+        public ProductModel[] ProductsFrom(int supplierId)
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var productMapper = mappers.ProductMapper;
+
+                return productMapper.Query()
+                    .Where(p => p.SupplierId == supplierId).ToArray()
+                    .Select(p => new ProductModel
+                    {
+                        Code = p.Id,
+                        Name = p.Id.ToString(),
+                        Quantity = p.AvailableAmount,
+                        Supplier = p.SupplierId
+                    }).ToArray();
             }
         }
     }

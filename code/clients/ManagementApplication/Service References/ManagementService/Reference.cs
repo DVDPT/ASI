@@ -513,6 +513,99 @@ namespace ManagementApplication.ManagementService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModel", Namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ProductModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> QuantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SupplierField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((this.CodeField.Equals(value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Supplier {
+            get {
+                return this.SupplierField;
+            }
+            set {
+                if ((this.SupplierField.Equals(value) != true)) {
+                    this.SupplierField = value;
+                    this.RaisePropertyChanged("Supplier");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ManagementService.ICustomerOrderReceiverService", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface ICustomerOrderReceiverService {
@@ -740,6 +833,67 @@ namespace ManagementApplication.ManagementService {
         
         public System.Threading.Tasks.Task<ManagementApplication.ManagementService.SupplierModel[]> AllSuppliersAsync() {
             return base.Channel.AllSuppliersAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ManagementService.IProductService")]
+    public interface IProductService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/AllProducts", ReplyAction="http://tempuri.org/IProductService/AllProductsResponse")]
+        ManagementApplication.ManagementService.ProductModel[] AllProducts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/AllProducts", ReplyAction="http://tempuri.org/IProductService/AllProductsResponse")]
+        System.Threading.Tasks.Task<ManagementApplication.ManagementService.ProductModel[]> AllProductsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ProductsFrom", ReplyAction="http://tempuri.org/IProductService/ProductsFromResponse")]
+        ManagementApplication.ManagementService.ProductModel[] ProductsFrom(int supplierId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ProductsFrom", ReplyAction="http://tempuri.org/IProductService/ProductsFromResponse")]
+        System.Threading.Tasks.Task<ManagementApplication.ManagementService.ProductModel[]> ProductsFromAsync(int supplierId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IProductServiceChannel : ManagementApplication.ManagementService.IProductService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ProductServiceClient : System.ServiceModel.ClientBase<ManagementApplication.ManagementService.IProductService>, ManagementApplication.ManagementService.IProductService {
+        
+        public ProductServiceClient() {
+        }
+        
+        public ProductServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ProductServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProductServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProductServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public ManagementApplication.ManagementService.ProductModel[] AllProducts() {
+            return base.Channel.AllProducts();
+        }
+        
+        public System.Threading.Tasks.Task<ManagementApplication.ManagementService.ProductModel[]> AllProductsAsync() {
+            return base.Channel.AllProductsAsync();
+        }
+        
+        public ManagementApplication.ManagementService.ProductModel[] ProductsFrom(int supplierId) {
+            return base.Channel.ProductsFrom(supplierId);
+        }
+        
+        public System.Threading.Tasks.Task<ManagementApplication.ManagementService.ProductModel[]> ProductsFromAsync(int supplierId) {
+            return base.Channel.ProductsFromAsync(supplierId);
         }
     }
 }

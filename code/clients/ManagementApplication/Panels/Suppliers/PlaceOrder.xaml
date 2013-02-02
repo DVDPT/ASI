@@ -1,11 +1,15 @@
-﻿<Page x:Class="ManagementApplication.Panels.PlaceOrder"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ViewModel="clr-namespace:ManagementApplication.ViewModel" x:Class="ManagementApplication.Panels.PlaceOrder" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="AddClient">
+    <Page.DataContext>
+        <ViewModel:PlaceOrderViewModel/>
+    </Page.DataContext>
 
     <DockPanel>
 
@@ -13,17 +17,23 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBox x:Name="txtAddress" Grid.Column="1" Height="23" Margin="0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtEmail" Grid.Column="1" Height="23" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+            <TextBlock Margin="0" TextWrapping="Wrap" Text="Supplier" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBlock Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="Product" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBlock Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cProduct" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Products}"/>
+            <ComboBox x:Name="cSupplier" Grid.Column="1" VerticalAlignment="Top" ItemsSource="{Binding Suppliers}"/>
+            <TextBox x:Name="txtQuantity" Grid.Row="2" Grid.Column="1" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         </Grid>
-        <Button x:Name="bCreate" Content="Create" Margin="0" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Click="bCreate_Click"/>
+        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button x:Name="bCreate" Content="Create" Margin="0" Click="bCreate_Click" HorizontalAlignment="Center"/>
+            <Button x:Name="bRefresh" Content="Refresh Data" Margin="10,0,0,0" HorizontalAlignment="Center" Click="bRefresh_Click"/>
+        </StackPanel>
     </DockPanel>
 </Page>

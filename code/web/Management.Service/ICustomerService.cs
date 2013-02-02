@@ -18,6 +18,6 @@ namespace Management.Service
         void RemoveCustomer(RemoveCustomerModel model);
 
         [OperationContract()]
-        IEnumerable<CustomerModel> AllCustomers();
+        CustomerModel[] AllCustomers();
     }
 }

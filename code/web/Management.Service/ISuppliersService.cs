@@ -14,6 +14,7 @@ namespace Management.Service
         [OperationContract(IsOneWay = true)]
         void OrderProduct(OrderProductModel model);
 
-        IEnumerable<SupplierModel> AllSuppliers();
+        [OperationContract]
+        SupplierModel[] AllSuppliers();
     }
 }

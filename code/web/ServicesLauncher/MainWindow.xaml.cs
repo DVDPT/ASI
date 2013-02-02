@@ -86,7 +86,7 @@ namespace ServicesLauncher
                 ManagementServiceStatus.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 255, 0) };
                 BrowseManagement.Visibility = Visibility.Visible;
 
-                _managementHost = new ServiceHost(typeof(CustomerOrderReceiverService));
+                _managementHost = new ServiceHost(typeof(ManagementService));
                 _managementHost.Open();
 
                 BrowseManagementLink.NavigateUri = _managementHost.BaseAddresses.First();

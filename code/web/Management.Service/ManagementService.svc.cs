@@ -14,7 +14,7 @@ using Management.Service.AsiTech.Services.Notification;
 namespace Management.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class CustomerOrderReceiverService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
+    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
     {
         [OperationBehavior(TransactionAutoComplete = false,
                          TransactionScopeRequired = true
@@ -90,7 +90,7 @@ namespace Management.Service
             {
                 var customerMapper = mappers.CustomerMapper;
 
-                customerMapper.Create(new DAL.Model.Common.CustomerBase
+                customerMapper.Create(new Customer
                 {
                     Address = model.Address,
                     Email = model.EmailAddress
@@ -109,7 +109,7 @@ namespace Management.Service
             }
         }
 
-        public IEnumerable<CustomerModel> AllCustomers()
+        public CustomerModel[] AllCustomers()
         {
             using (var mappers = new ManagementDataMapperContainer())
             {
@@ -122,7 +122,7 @@ namespace Management.Service
                         Address = c.Address,
                         EmailAddress = c.Email
                     }
-                );
+                ).ToArray();
             }
         }
 
@@ -143,7 +143,7 @@ namespace Management.Service
             }
         }
 
-        public IEnumerable<SupplierModel> AllSuppliers()
+        public SupplierModel[] AllSuppliers()
         {
             using (var mappers = new ManagementDataMapperContainer())
             {
@@ -156,7 +156,7 @@ namespace Management.Service
                         Address = s.Address,
                         Name = s.Name
                     }
-                );
+                ).ToArray();
             }
         }
     }

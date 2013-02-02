@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ManagementService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetMsmqBinding_ICustomerOrderReceiverService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <msmq:MsmqSession xmlns:msmq="http://schemas.microsoft.com/ws/06/2004/mspolicy/msmq" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/management-ws/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/management-ws/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/management-ws/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model" />
+      <xsd:import schemaLocation="http://localhost:8080/management-ws/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Business.Common.ManagementCenter" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICustomerOrderReceiverService_HandleOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:HandleOrder" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_ChangeOrderState_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderState" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_CreateCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_RemoveCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AllCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllCustomers" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AllCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISuppliersService_OrderProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderProduct" />
+  </wsdl:message>
+  <wsdl:message name="ISuppliersService_AllSuppliers_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="ISuppliersService_AllSuppliers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="ICustomerOrderReceiverService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="HandleOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderReceiverService/HandleOrder" message="tns:ICustomerOrderReceiverService_HandleOrder_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICustomerOrderService">
+    <wsdl:operation name="ChangeOrderState">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/ChangeOrderState" message="tns:ICustomerOrderService_ChangeOrderState_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICustomerService">
+    <wsdl:operation name="CreateCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerService/CreateCustomer" message="tns:ICustomerService_CreateCustomer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerService/RemoveCustomer" message="tns:ICustomerService_RemoveCustomer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerService/AllCustomers" message="tns:ICustomerService_AllCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerService/AllCustomersResponse" message="tns:ICustomerService_AllCustomers_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ISuppliersService">
+    <wsdl:operation name="OrderProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISuppliersService/OrderProduct" message="tns:ISuppliersService_OrderProduct_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllSuppliers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISuppliersService/AllSuppliers" message="tns:ISuppliersService_AllSuppliers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISuppliersService/AllSuppliersResponse" message="tns:ISuppliersService_AllSuppliers_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetMsmqBinding_ICustomerOrderReceiverService" type="tns:ICustomerOrderReceiverService">
+    <wsp:PolicyReference URI="#NetMsmqBinding_ICustomerOrderReceiverService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/msmq" />
+    <wsdl:operation name="HandleOrder">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerOrderReceiverService/HandleOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ICustomerOrderService" type="tns:ICustomerOrderService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeOrderState">
+      <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/ChangeOrderState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ICustomerService" type="tns:ICustomerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICustomerService/CreateCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICustomerService/RemoveCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AllCustomers">
+      <soap:operation soapAction="http://tempuri.org/ICustomerService/AllCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ISuppliersService" type="tns:ISuppliersService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OrderProduct">
+      <soap:operation soapAction="http://tempuri.org/ISuppliersService/OrderProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AllSuppliers">
+      <soap:operation soapAction="http://tempuri.org/ISuppliersService/AllSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManagementService">
+    <wsdl:port name="NetMsmqBinding_ICustomerOrderReceiverService" binding="tns:NetMsmqBinding_ICustomerOrderReceiverService">
+      <soap12:address location="net.msmq://joaoportatil/private/CustomerOrderMessageQueue" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.msmq://joaoportatil/private/CustomerOrderMessageQueue</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ICustomerOrderService" binding="tns:BasicHttpBinding_ICustomerOrderService">
+      <soap:address location="http://localhost:8080/management-ws/orders/" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ICustomerService" binding="tns:BasicHttpBinding_ICustomerService">
+      <soap:address location="http://localhost:8080/management-ws/customers/" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ISuppliersService" binding="tns:BasicHttpBinding_ISuppliersService">
+      <soap:address location="http://localhost:8080/management-ws/suppliers/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

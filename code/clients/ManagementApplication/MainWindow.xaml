@@ -1,0 +1,30 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModel="clr-namespace:ManagementApplication.ViewModel" x:Name="window" mc:Ignorable="d" x:Class="ManagementApplication.MainWindow"
+        Title="MainWindow" Height="500" Width="700">
+    <Window.DataContext>
+        <ViewModel:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Border x:Name="MenuBorder" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="449" Margin="10,10,0,0" VerticalAlignment="Top" Width="137">
+            <TreeView x:Name="Menu">
+                <TreeViewItem Header="Clients">
+                    <Button x:Name="bListClients" Content="List" Command="{Binding NavigationButtonCommand}" CommandParameter="./Panels/Clients/ListClients.xaml"/>
+                    <Button x:Name="bAddClient" Content="Add" Command="{Binding NavigationButtonCommand}"  CommandParameter="./Panels/Clients/AddClient.xaml"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Suppliers">
+                    <Button x:Name="bListSuppliers" Content="List" Command="{Binding NavigationButtonCommand}"  CommandParameter="./Panels/Suppliers/ListSuppliers.xaml"/>
+                    <Button x:Name="bPlaceOrder" Content="Place Order" Command="{Binding NavigationButtonCommand}" CommandParameter="./Panels/Suppliers/PlaceOrder.xaml"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Orders">
+                    <Button x:Name="bListOrders" Content="List" Command="{Binding NavigationButtonCommand}"/>
+                    <Button x:Name="bManageOrder" Content="Manage" Command="{Binding NavigationButtonCommand}"/>
+                </TreeViewItem>
+            </TreeView>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="449" Margin="152,10,0,0" VerticalAlignment="Top" Width="530">
+            <Frame x:Name="Panels" Content="Frame" Source="/ManagementApplication;component/Panels/Clients/ListClients.xaml" NavigationUIVisibility="Hidden"/>
+        </Border>
+    </Grid>
+</Window>

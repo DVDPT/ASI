@@ -6,11 +6,17 @@ using System.Web;
 
 namespace Management.Service.Model
 {
-    [DataContract]
-    public class CustomerModel : CreateCustomerModel
+    [DataContract(IsReference = true)]
+    public class CustomerModel
     {
         [DataMember]
         public int Number { get; set; }
+
+        [DataMember]
+        public string Address { get; set; }
+
+        [DataMember]
+        public string EmailAddress { get; set; }
     }
 
     [DataContract]

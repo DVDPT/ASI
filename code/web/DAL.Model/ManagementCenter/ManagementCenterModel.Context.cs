@@ -33,6 +33,7 @@ namespace DAL.Model.ManagementCenter
         public DbSet<ManagementCenterProduct> ManagementCenterProduct { get; set; }
         public DbSet<ProductSupplier> ProductSupplier { get; set; }
         public DbSet<SupplierOrder> SupplierOrder { get; set; }
+        public DbSet<Products> Products { get; set; }
     
         public virtual int DeleteProduct(Nullable<int> id)
         {
@@ -66,6 +67,19 @@ namespace DAL.Model.ManagementCenter
                 new ObjectParameter("startAmount", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertProduct", idParameter, nameParameter, supplierIdParameter, priceParameter, startAmountParameter);
+        }
+    
+        public virtual int UpdateProduct(Nullable<int> id, Nullable<int> amount)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var amountParameter = amount.HasValue ?
+                new ObjectParameter("amount", amount) :
+                new ObjectParameter("amount", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateProduct", idParameter, amountParameter);
         }
     }
 }

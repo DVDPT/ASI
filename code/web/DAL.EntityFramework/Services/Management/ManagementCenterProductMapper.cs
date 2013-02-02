@@ -34,7 +34,7 @@ namespace DAL.EntityFramework.Services.Management
 
         public void Update(ManagementCenterProduct obj)
         {
-            throw new System.NotImplementedException();
+            _ctx.UpdateProduct(obj.Id, obj.AvailableAmount);
         }
 
         public void Delete(ManagementCenterProduct obj)

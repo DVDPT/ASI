@@ -73,6 +73,9 @@
     <Compile Include="ManagementCenter\ManagementCenterProduct.cs">
       <DependentUpon>ManagementCenterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManagementCenter\Products.cs">
+      <DependentUpon>ManagementCenterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ManagementCenter\ProductSupplier.cs">
       <DependentUpon>ManagementCenterModel.tt</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="OrdersCenter\OrdersCenterModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OrdersCenterModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="ManagementCenter\ManagementCenterModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ManagementCenterModel.Designer.cs</LastGenOutput>
@@ -121,10 +128,6 @@
       <DependentUpon>ManagementCenterModel.edmx</DependentUpon>
       <LastGenOutput>ManagementCenterModel.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="OrdersCenter\OrdersCenterModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OrdersCenterModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="OrdersCenter\OrdersCenterModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OrdersCenterModel.edmx</DependentUpon>

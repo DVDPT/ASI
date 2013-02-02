@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,11 @@
     <Compile Include="OrdersCenter\OrdersDataMapperContainer.cs" />
     <Compile Include="MapperContainerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AsiTech.Services.Notifications\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -67,6 +73,34 @@
       <Project>{8C19A9AF-5C0D-4909-A3AB-B363831616B4}</Project>
       <Name>DAL.EntityFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\AsiTech.Services.Notifications\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AsiTech.Services.Notifications\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AsiTech.Services.Notifications\NotificationService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AsiTech.Services.Notifications\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AsiTech.Services.Notifications\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AsiTech.Services.Notifications\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AsiTech.Services.Notifications\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AsiTech.Services.Notifications\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

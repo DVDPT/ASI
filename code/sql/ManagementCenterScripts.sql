@@ -93,5 +93,27 @@ as
 	commit transaction
 go
 
+create view Products
+as 
+select m.Id, m.Price, m.AvailableAmount, m.SupplierId, o.Name
+FROM ManagementCenterProduct as m join OrderCenterProduct as o 
+on(m.Id = o.Id)
+
+select * from Products
+
+create proc sp_UpdateProduct
+	@id int,
+	@amount int
+as
+	update ManagementCenterProduct 
+	set AvailableAmount = @amount
+	where Id=@id 
+
+	update OrderCenterProduct
+	set AvailableAmount = @amount
+	where Id=@id 
+go
+
+
 select * from ManagementCenterProduct 
 select * from OrderCenterProduct 

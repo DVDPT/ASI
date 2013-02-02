@@ -11,6 +11,15 @@
           <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.Store.ProductSupplier" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.Store.SupplierOrder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="DAL.Model.ManagementCenter.Store.Products" store:Type="Views" store:Schema="dbo" store:Name="Products">
+            <DefiningQuery>SELECT 
+      [Products].[Id] AS [Id], 
+      [Products].[Price] AS [Price], 
+      [Products].[AvailableAmount] AS [AvailableAmount], 
+      [Products].[SupplierId] AS [SupplierId], 
+      [Products].[Name] AS [Name]
+      FROM [dbo].[Products] AS [Products]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.Store.FK__CustomerO__Custo__778AC167">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="CustomerOrder" EntitySet="CustomerOrder" />
@@ -79,6 +88,21 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="OrderAmount" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'AsiTechManagementCenter.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="AvailableAmount" Type="int" />
+          <Property Name="SupplierId" Type="int" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="128" />
         </EntityType>
         <Association Name="FK__CustomerO__Custo__778AC167">
           <End Role="Customer" Type="DAL.Model.ManagementCenter.Store.Customer" Multiplicity="1" />
@@ -150,17 +174,22 @@
           <Parameter Name="price" Type="float" Mode="In" />
           <Parameter Name="startAmount" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_UpdateProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
+        </Function>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAL.Model.ManagementCenter" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="AsiTechManagementCenterContext" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="ManagementCenterContext" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Customer" EntityType="DAL.Model.ManagementCenter.Customer" />
           <EntitySet Name="CustomerOrder" EntityType="DAL.Model.ManagementCenter.CustomerOrder" />
           <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.ManagementCenterProduct" />
           <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.ProductSupplier" />
           <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.SupplierOrder" />
+          <EntitySet Name="Products" EntityType="DAL.Model.ManagementCenter.Products" />
           <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="CustomerOrder" EntitySet="CustomerOrder" />
@@ -190,6 +219,10 @@
             <Parameter Name="supplierId" Mode="In" Type="Int32" />
             <Parameter Name="price" Mode="In" Type="Double" />
             <Parameter Name="startAmount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateProduct">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Customer">
@@ -249,6 +282,18 @@
           <Property Name="OrderAmount" Type="Int32" />
           <NavigationProperty Name="ManagementCenterProduct" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684" FromRole="SupplierOrder" ToRole="ManagementCenterProduct" />
           <NavigationProperty Name="ProductSupplier" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD" FromRole="SupplierOrder" ToRole="ProductSupplier" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="AvailableAmount" Type="Int32" />
+          <Property Name="SupplierId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
         </EntityType>
         <Association Name="FK__CustomerO__Custo__778AC167">
           <End Role="Customer" Type="DAL.Model.ManagementCenter.Customer" Multiplicity="1" />
@@ -315,7 +360,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DALModelManagementCenterStoreContainer" CdmEntityContainer="AsiTechManagementCenterContext">
+        <EntityContainerMapping StorageEntityContainer="DALModelManagementCenterStoreContainer" CdmEntityContainer="ManagementCenterContext">
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -365,8 +410,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="AvailableAmount" ColumnName="AvailableAmount" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_DeleteProduct" FunctionName="DAL.Model.ManagementCenter.Store.sp_DeleteProduct" />
           <FunctionImportMapping FunctionImportName="sp_InsertProduct" FunctionName="DAL.Model.ManagementCenter.Store.sp_InsertProduct" />
+          <FunctionImportMapping FunctionImportName="sp_UpdateProduct" FunctionName="DAL.Model.ManagementCenter.Store.sp_UpdateProduct" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

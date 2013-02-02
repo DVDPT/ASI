@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.EntityFramework.Services.Management;
 using DAL.Model.ManagementCenter;
 using DAL.Model.OrdersCenter;
 
@@ -12,14 +13,16 @@ namespace IselTechConsoleApp
     {
         static void Main(string[] args)
         {
-            var ctx = new OrdersCenterContext();
-            var c = ctx.Customer.ToList();
-            var xot = c;
+            ManagementCenterContext c;
+            var a = new ManagementCenterProductMapper(c=new ManagementCenterContext());
 
-            var ctx2 = new ManagementCenterContext();
-            var x = ctx2.Customer.ToList();
-            var s = x;
+            var prod = a.Get(1);
+            var x = a.Query().ToList();
 
+            var aa = prod;
+            prod.AvailableAmount = 123321;
+            a.Update(prod);
+            c.SaveChanges();
         }
     }
 }

@@ -21,7 +21,6 @@ namespace DAL.Model.ManagementCenter
             this.CustomerOrder = new HashSet<CustomerOrder>();
         }
     
-    
         public virtual ICollection<CustomerOrder> CustomerOrder { get; set; }
     }
 }

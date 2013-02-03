@@ -14,11 +14,13 @@ namespace IselTechConsoleApp
     {
         static void Main(string[] args)
         {
+            var p = new ManagementCenterContext();
+            var xpto  = p.Product.First();
             OrdersCenterContext c;
             var a = new OrdersCenterProductMapper(c = new OrdersCenterContext());
 
             var prod2 = c.Product.First(e => e.Id == 1);
-
+            var cc = c.Customer.First();
             var prod = a.Get(1);
             var x = a.Query().ToList();
 

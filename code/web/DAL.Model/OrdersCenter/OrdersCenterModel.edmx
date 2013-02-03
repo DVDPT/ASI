@@ -56,11 +56,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DAL.Model.OrdersCenter" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OrdersCenterContext" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Customer" EntityType="DAL.Model.OrdersCenter.Customer" />
+          <EntitySet Name="Customer" EntityType="DAL.Model.OrdersCenter.CustomerBase" />
           <EntitySet Name="OrderCenterProduct" EntityType="DAL.Model.OrdersCenter.OrderCenterProduct" />
           <EntitySet Name="Product" EntityType="DAL.Model.OrdersCenter.Product" />
         </EntityContainer>
-        <EntityType Name="Customer">
+        <EntityType Name="CustomerBase">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -96,7 +96,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DALModelOrdersCenterStoreContainer" CdmEntityContainer="OrdersCenterContext">
           <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="DAL.Model.OrdersCenter.Customer">
+            <EntityTypeMapping TypeName="DAL.Model.OrdersCenter.CustomerBase">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

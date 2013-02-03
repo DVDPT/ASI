@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DAL.Model">
-      <HintPath>..\IselTechConsoleApp\bin\Debug\DAL.Model.dll</HintPath>
+      <HintPath>..\DAL.Model\bin\Debug\DAL.Model.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\IselTechConsoleApp\bin\Debug\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

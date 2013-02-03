@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DAL.Model.Entities;
+
 namespace DAL.Model.ManagementCenter
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerOrder
+    public partial class CustomerOrder : CustomerOrderBase
     {
-        public System.DateTime OrderDate { get; set; }
-        public int State { get; set; }
-        public int CustomerId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> OrderAmount { get; set; }
-    
         public virtual Customer Customer { get; set; }
         public virtual ManagementCenterProduct ManagementCenterProduct { get; set; }
     }

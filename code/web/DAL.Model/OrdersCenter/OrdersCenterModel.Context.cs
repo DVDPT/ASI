@@ -7,7 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DAL.Model.Common;
+using DAL.Model.Entities;
+using DAL.Model.ManagementCenter;
 
 namespace DAL.Model.OrdersCenter
 {
@@ -29,5 +30,6 @@ namespace DAL.Model.OrdersCenter
     
         public DbSet<CustomerBase> Customer { get; set; }
         public DbSet<OrderCenterProduct> OrderCenterProduct { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

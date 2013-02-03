@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Access.Common;
-using DAL.Model.Common;
+using DAL.Access;
+using DAL.Model.Entities;
 using DAL.Model.OrdersCenter;
+using CustomerBase = DAL.Model.Entities.CustomerBase;
 
 namespace DAL.EntityFramework.Services.Orders
 {

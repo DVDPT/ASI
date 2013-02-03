@@ -120,6 +120,8 @@ create proc sp_UpdateProduct
 	@id int,
 	@amount int
 as
+	set XACT_ABORT on
+	begin distributed transaction
 	update ManagementCenterProduct 
 	set AvailableAmount = @amount
 	where Id=@id 
@@ -127,6 +129,7 @@ as
 	update OrderCenterProduct
 	set AvailableAmount = @amount
 	where Id=@id 
+	commit transaction
 go
 
 

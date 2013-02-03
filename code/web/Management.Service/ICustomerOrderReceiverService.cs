@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Management.Service
 {
-    [ServiceContract(SessionMode = SessionMode.Required)]
+    [ServiceContract()]
     public interface ICustomerOrderReceiverService
     {
         [OperationContract(IsOneWay = true)]

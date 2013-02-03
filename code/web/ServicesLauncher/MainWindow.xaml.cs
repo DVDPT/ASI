@@ -34,6 +34,7 @@ namespace ServicesLauncher
 
         private ServiceHost _ordersHost = null;
         private ServiceHost _managementHost = null;
+        private ServiceHost _managementHost2 = null;
         private ServiceHost _notificationsHost = null;
 
         public MainWindow()
@@ -89,6 +90,9 @@ namespace ServicesLauncher
                 _managementHost = new ServiceHost(typeof(ManagementService));
                 _managementHost.Open();
 
+                _managementHost2 = new ServiceHost(typeof(OrderHandlerService));
+                _managementHost2.Open();
+
                 BrowseManagementLink.NavigateUri = _managementHost.BaseAddresses.First();
                 BrowseManagement.Text += _managementHost.BaseAddresses.First().AbsoluteUri;
             }
@@ -99,6 +103,7 @@ namespace ServicesLauncher
                 BrowseManagement.Visibility = Visibility.Collapsed;
 
                 _managementHost.Close();
+                _managementHost2.Close();
             }
         }
 
@@ -149,6 +154,17 @@ namespace ServicesLauncher
                     if (_managementServiceStatus)
                     {
                         _managementHost.Close();
+                    }
+                }
+            }
+
+            if (_managementHost2 != null)
+            {
+                using (_managementHost2)
+                {
+                    if (_managementServiceStatus)
+                    {
+                        _managementHost2.Close();
                     }
                 }
             }

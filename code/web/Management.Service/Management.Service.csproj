@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ManagementService.svc" />
+    <Content Include="OrderHandlerService.svc" />
     <Content Include="Service References\AsiTech.Services.Notification\configuration91.svcinfo" />
     <Content Include="Service References\AsiTech.Services.Notification\configuration.svcinfo" />
     <Content Include="Service References\AsiTech.Services.Notification\Reference.svcmap">
@@ -92,6 +93,9 @@
     <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\SupplierModels.cs" />
+    <Compile Include="OrderHandlerService.svc.cs">
+      <DependentUpon>OrderHandlerService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AsiTech.Services.Notification\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -135,3 +135,5 @@ go
 
 select * from ManagementCenterProduct 
 select * from OrderCenterProduct 
+
+select * from Customer

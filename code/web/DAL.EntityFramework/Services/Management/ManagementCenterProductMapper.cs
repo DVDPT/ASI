@@ -20,12 +20,12 @@ namespace DAL.EntityFramework.Services.Management
 
         public ProductBase Get(int key)
         {
-            return _ctx.Product.FirstOrDefault(p => p.Id.Equals(key));
+            return _ctx.Product.AsNoTracking().FirstOrDefault(p => p.Id.Equals(key));
         }
 
         public IQueryable<ProductBase> Query()
         {
-            return _ctx.ManagementCenterProduct;
+            return _ctx.ManagementCenterProduct.AsNoTracking();
         }
 
         public void Create(ProductBase obj)

@@ -33,9 +33,9 @@ namespace DAL.Model.ManagementCenter
         public DbSet<ManagementCenterProduct> ManagementCenterProduct { get; set; }
         public DbSet<ProductSupplier> ProductSupplier { get; set; }
         public DbSet<SupplierOrder> SupplierOrder { get; set; }
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Product> Product { get; set; }
     
-        public virtual int DeleteProduct(Nullable<int> id)
+        public virtual int sp_DeleteProduct(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -44,7 +44,7 @@ namespace DAL.Model.ManagementCenter
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteProduct", idParameter);
         }
     
-        public virtual int InsertProduct(Nullable<int> id, string name, Nullable<int> supplierId, Nullable<double> price, Nullable<int> startAmount)
+        public virtual int sp_InsertProduct(Nullable<int> id, string name, Nullable<int> supplierId, Nullable<double> price, Nullable<int> startAmount)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -69,7 +69,7 @@ namespace DAL.Model.ManagementCenter
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertProduct", idParameter, nameParameter, supplierIdParameter, priceParameter, startAmountParameter);
         }
     
-        public virtual int UpdateProduct(Nullable<int> id, Nullable<int> amount)
+        public virtual int sp_UpdateProduct(Nullable<int> id, Nullable<int> amount)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :

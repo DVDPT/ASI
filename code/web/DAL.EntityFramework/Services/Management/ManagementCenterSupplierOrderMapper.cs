@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Access.ManagementCenter;
+using DAL.Access;
+using DAL.Model.Entities;
 using DAL.Model.ManagementCenter;
 
 namespace DAL.EntityFramework.Services.Management
 {
-    public class ManagementCenterSupplierOrderMapper : BaseDataMapper<SupplierOrder, SupplierOrderKey>, ISupplierOrderMapper
+    public class ManagementCenterSupplierOrderMapper : BaseDataMapper<SupplierOrderBase, SupplierOrder, SupplierOrderKey>, ISupplierOrderMapper
     {
         private readonly ManagementCenterContext _ctx;
 
@@ -18,7 +19,7 @@ namespace DAL.EntityFramework.Services.Management
             _ctx = ctx;
         }
 
-        public override SupplierOrder Get(SupplierOrderKey key)
+        public override SupplierOrderBase Get(SupplierOrderKey key)
         {
             return _ctx.SupplierOrder.FirstOrDefault(o => o.ProductId.Equals(key.ProductId) &&
                                                           o.SupplierId.Equals(key.SupplierId) &&

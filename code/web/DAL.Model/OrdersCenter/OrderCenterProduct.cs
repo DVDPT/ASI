@@ -7,16 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DAL.Model.Entities;
+
 namespace DAL.Model.OrdersCenter
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderCenterProduct
+    public partial class OrderCenterProduct : ProductBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public Nullable<int> AvailableAmount { get; set; }
     }
 }

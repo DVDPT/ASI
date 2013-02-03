@@ -3,14 +3,14 @@ using System.ServiceModel;
 using System.Transactions;
 using Business.Common.Error;
 using Business.Common.OrdersCenter;
-using DAL.Access.Common;
-using DAL.Access.OrdersCenter;
-using DAL.Model.Common;
+using DAL.Access;
+using DAL.Model.Entities;
 using DAL.Model.OrdersCenter;
 using Ninject;
 using Orders.Service.AsiTech.Services.Management;
 using Orders.Service.AsiTech.Services.Notification;
 using Orders.Service.Model;
+using CustomerBase = DAL.Model.Entities.CustomerBase;
 
 namespace Orders.Service
 {
@@ -72,7 +72,7 @@ namespace Orders.Service
             return customer;
         }
 
-        private OrderCenterProduct EnsureProductExistance(IProductMapper mapper, int id)
+        private ProductBase EnsureProductExistance(IProductMapper mapper, int id)
         {
             var product = mapper.Get(id);
 

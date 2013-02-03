@@ -6,7 +6,6 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Business.Common.Notification;
-using DAL.Model.Common;
 using DAL.Model.ManagementCenter;
 using Management.Service.Model;
 using System.Transactions;

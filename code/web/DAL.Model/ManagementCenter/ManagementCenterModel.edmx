@@ -11,14 +11,14 @@
           <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.Store.ManagementCenterProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.Store.ProductSupplier" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.Store.SupplierOrder" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Products" EntityType="DAL.Model.ManagementCenter.Store.Products" store:Type="Views" store:Schema="dbo" store:Name="Products">
+          <EntitySet Name="Product" EntityType="DAL.Model.ManagementCenter.Store.Product" store:Type="Views" store:Schema="dbo" store:Name="Product">
             <DefiningQuery>SELECT 
-      [Products].[Id] AS [Id], 
-      [Products].[Price] AS [Price], 
-      [Products].[AvailableAmount] AS [AvailableAmount], 
-      [Products].[SupplierId] AS [SupplierId], 
-      [Products].[Name] AS [Name]
-      FROM [dbo].[Products] AS [Products]</DefiningQuery>
+      [Product].[Id] AS [Id], 
+      [Product].[Price] AS [Price], 
+      [Product].[AvailableAmount] AS [AvailableAmount], 
+      [Product].[SupplierId] AS [SupplierId], 
+      [Product].[Name] AS [Name]
+      FROM [dbo].[Product] AS [Product]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.Store.FK__CustomerO__Custo__778AC167">
             <End Role="Customer" EntitySet="Customer" />
@@ -90,9 +90,9 @@
           <Property Name="OrderAmount" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'AsiTechManagementCenter.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'AsiTechManagementCenter.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-        <EntityType Name="Products">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="Price" />
@@ -189,7 +189,7 @@
           <EntitySet Name="ManagementCenterProduct" EntityType="DAL.Model.ManagementCenter.ManagementCenterProduct" />
           <EntitySet Name="ProductSupplier" EntityType="DAL.Model.ManagementCenter.ProductSupplier" />
           <EntitySet Name="SupplierOrder" EntityType="DAL.Model.ManagementCenter.SupplierOrder" />
-          <EntitySet Name="Products" EntityType="DAL.Model.ManagementCenter.Products" />
+          <EntitySet Name="Product" EntityType="DAL.Model.ManagementCenter.Product" />
           <AssociationSet Name="FK__CustomerO__Custo__778AC167" Association="DAL.Model.ManagementCenter.FK__CustomerO__Custo__778AC167">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="CustomerOrder" EntitySet="CustomerOrder" />
@@ -283,7 +283,7 @@
           <NavigationProperty Name="ManagementCenterProduct" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Produ__7C4F7684" FromRole="SupplierOrder" ToRole="ManagementCenterProduct" />
           <NavigationProperty Name="ProductSupplier" Relationship="DAL.Model.ManagementCenter.FK__SupplierO__Suppl__7D439ABD" FromRole="SupplierOrder" ToRole="ProductSupplier" />
         </EntityType>
-        <EntityType Name="Products">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="Price" />
@@ -410,9 +410,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.Products">
-              <MappingFragment StoreEntitySet="Products">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DAL.Model.ManagementCenter.Product">
+              <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="AvailableAmount" ColumnName="AvailableAmount" />

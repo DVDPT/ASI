@@ -8,11 +8,13 @@ using DAL.Access;
 
 namespace DAL.EntityFramework
 {
-    public abstract class BaseDataMapper<TValue, TKey> : IDataMapper<TValue, TKey> where TValue : class
+    public abstract class BaseDataMapper<TValue, TDerivedValue, TKey> : IDataMapper<TValue, TKey>
+        where TValue : class
+        where TDerivedValue : class, TValue
     {
-        private readonly IDbSet<TValue> _dbSet;
+        private readonly IDbSet<TDerivedValue> _dbSet;
 
-        protected BaseDataMapper(IDbSet<TValue> dbSet)
+        protected BaseDataMapper(IDbSet<TDerivedValue> dbSet)
         {
 
             _dbSet = dbSet;
@@ -28,7 +30,7 @@ namespace DAL.EntityFramework
 
         public void Create(TValue obj)
         {
-            _dbSet.Add(obj);
+            _dbSet.Add((TDerivedValue)obj);
         }
 
         public void Update(TValue obj)
@@ -38,7 +40,7 @@ namespace DAL.EntityFramework
 
         public void Delete(TValue obj)
         {
-            _dbSet.Remove(obj);
+            _dbSet.Remove((TDerivedValue)obj);
         }
 
         public void Delete(TKey key)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.EntityFramework.Services.Management;
+using DAL.EntityFramework.Services.Orders;
 using DAL.Model.ManagementCenter;
 using DAL.Model.OrdersCenter;
 
@@ -13,10 +14,10 @@ namespace IselTechConsoleApp
     {
         static void Main(string[] args)
         {
-            ManagementCenterContext c;
-            var a = new ManagementCenterProductMapper(c=new ManagementCenterContext());
+            OrdersCenterContext c;
+            var a = new OrdersCenterProductMapper(c = new OrdersCenterContext());
 
-            var prod2 = c.Products.First(e => e.Id == 1);
+            var prod2 = c.Product.First(e => e.Id == 1);
 
             var prod = a.Get(1);
             var x = a.Query().ToList();

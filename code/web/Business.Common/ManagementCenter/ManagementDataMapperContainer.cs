@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Access.Common;
-using DAL.Access.ManagementCenter;
+using DAL.Access;
 using DAL.EntityFramework.Services.Management;
 using DAL.Model.ManagementCenter;
 

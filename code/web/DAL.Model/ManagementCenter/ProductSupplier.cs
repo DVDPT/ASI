@@ -7,12 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DAL.Model.Entities;
+
 namespace DAL.Model.ManagementCenter
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class ProductSupplier
+
+    public partial class ProductSupplier : ProductSupplierBase
     {
         public ProductSupplier()
         {
@@ -20,10 +22,7 @@ namespace DAL.Model.ManagementCenter
             this.SupplierOrder = new HashSet<SupplierOrder>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-    
+       
         public virtual ICollection<ManagementCenterProduct> ManagementCenterProduct { get; set; }
         public virtual ICollection<SupplierOrder> SupplierOrder { get; set; }
     }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.Model.Entities;
 using DAL.Model.ManagementCenter;
 
-namespace DAL.Access.ManagementCenter
+namespace DAL.Access
 {
 
     public sealed class CustomerOrderKeys
@@ -16,7 +13,7 @@ namespace DAL.Access.ManagementCenter
     
     }
 
-    public interface ICustomerOrderMapper : IDataMapper<CustomerOrder, CustomerOrderKeys>
+    public interface ICustomerOrderMapper : IDataMapper<CustomerOrderBase, CustomerOrderKeys>
     {
     }
 }

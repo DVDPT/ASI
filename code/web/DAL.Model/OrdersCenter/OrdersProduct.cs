@@ -9,14 +9,12 @@
 
 using DAL.Model.Entities;
 
-namespace DAL.Model.ManagementCenter
+namespace DAL.Model.OrdersCenter
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SupplierOrder : SupplierOrderBase
+    public partial class OrdersProduct : ProductBase
     {
-        public virtual ManagementCenterProduct ManagementCenterProduct { get; set; }
-        public virtual ProductSupplier ProductSupplier { get; set; }
     }
 }

@@ -14,9 +14,8 @@ namespace DAL.Model.ManagementCenter
     using System;
     using System.Collections.Generic;
     
-    public partial class SupplierOrder : SupplierOrderBase
+    public partial class Product : ProductBase
     {
-        public virtual ManagementCenterProduct ManagementCenterProduct { get; set; }
-        public virtual ProductSupplier ProductSupplier { get; set; }
+       
     }
 }

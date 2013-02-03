@@ -66,24 +66,29 @@ namespace Management.Service
         [TransactionFlow(TransactionFlowOption.Allowed)]
         public void ChangeOrderState(OrderKeyModel orderModel, OrderState state)
         {
-            using (var mappers = new ManagementDataMapperContainer())
+            using (var transaction = new TransactionScope(TransactionScopeOption.Required))
             {
-                var orderMapper = mappers.CustomerOrderMapper;
-
-                var order = orderMapper.Query().SingleOrDefault(o => o.ProductId == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == orderModel.OrderDate);
-
-                if (order == null)
+                using (var mappers = new ManagementDataMapperContainer())
                 {
-                    throw new ArgumentException("Order doesn't exist!");
+                    var orderMapper = mappers.CustomerOrderMapper;
+
+                    var order = orderMapper.Query().SingleOrDefault(o => o.ProductId == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == orderModel.OrderDate);
+
+                    if (order == null)
+                    {
+                        throw new ArgumentException("Order doesn't exist!");
+                    }
+
+                    order.State = (int)state;
+                    orderMapper.Update(order);
+
+                    NotificationHelper.NotifyOrderChangedState(mappers.CustomerMapper.Get(orderModel.CustomerId),
+                                                               mappers.ProductMapper.Get(orderModel.ProductCode),
+                                                               state.ToString());
+
                 }
 
-                order.State = (int)state;
-                orderMapper.Update(order);
-
-                NotificationHelper.NotifyOrderChangedState(mappers.CustomerMapper.Get(orderModel.CustomerId),
-                                                           mappers.ProductMapper.Get(orderModel.ProductCode),
-                                                           state.ToString());
-
+                transaction.Complete();
             }
         }
 

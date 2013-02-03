@@ -1,6 +1,8 @@
 ﻿using System.ServiceModel;
 using Business.Common.Error;
 using Orders.Service.Model;
+using Management.Service.Model;
+using System.Collections.Generic;
 
 namespace Orders.Service
 {
@@ -10,5 +12,8 @@ namespace Orders.Service
     {
         [OperationContract]
         void PlaceOrder(OrderModel order);
+
+        [OperationContract]
+        ProductModel[] ListProducts();
     }
 }

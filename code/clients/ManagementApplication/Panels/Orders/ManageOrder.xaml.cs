@@ -55,7 +55,7 @@ namespace ManagementApplication.Panels
 
         private void SetState(OrderModel orderModel)
         {
-            cState.SelectedItem = orderModel.State;
+            (DataContext as ManageOrderViewModel).State = (OrderState) orderModel.State;
             cState.IsEnabled = true;
         }
 

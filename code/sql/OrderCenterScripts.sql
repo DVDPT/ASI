@@ -12,6 +12,10 @@ if @PcName = 'DVD-PC'
 begin
 	set @ManagementCenterServer = 'DVD-PC\SQLSERVER' 
 end
+if @PcName = 'JoaoPORTATIL'
+begin
+	set @ManagementCenterServer = 'JoaoPORTATIL' 
+end
 
 exec sp_addlinkedserver @server = @ManagementCenterServer, @srvproduct = 'SQL Server';
 

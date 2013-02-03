@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Transactions;
+using System.Linq;
 using Business.Common.Error;
 using Business.Common.OrdersCenter;
 using DAL.Access;
@@ -11,6 +12,7 @@ using Orders.Service.AsiTech.Services.Management;
 using Orders.Service.AsiTech.Services.Notification;
 using Orders.Service.Model;
 using CustomerBase = DAL.Model.Entities.CustomerBase;
+using Management.Service.Model;
 
 namespace Orders.Service
 {
@@ -80,6 +82,24 @@ namespace Orders.Service
                 throw new ProductNotFoundException(id);
 
             return product;
+        }
+
+
+        public ProductModel[] ListProducts()
+        {
+            using (var mappers = new OrdersDataMapperContainer())
+            {
+                var productsMapper = mappers.ProductMapper;
+
+                return productsMapper.Query()
+                    .Select(p => new ProductModel
+                    {
+                        Code = p.Id,
+                        Name = p.Name,
+                        Quantity = p.AvailableAmount,
+                        Supplier = p.SupplierId
+                    }).ToArray();
+            } 
         }
     }
 }

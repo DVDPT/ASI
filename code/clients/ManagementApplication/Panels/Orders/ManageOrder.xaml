@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Margin="0" TextWrapping="Wrap" Text="Orders" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <TextBlock Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="State" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <ComboBox x:Name="cState" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderStates}" SelectedItem="{Binding State}"/>
+            <ComboBox x:Name="cState" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderStates}" SelectedValue="{Binding State}"/>
             <ComboBox x:Name="cOrder" Grid.Column="1" VerticalAlignment="Top" ItemsSource="{Binding Orders}"/>
 
         </Grid>

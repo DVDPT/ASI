@@ -1,5 +1,4 @@
-﻿using DAL.Access.Common;
-using DAL.Access.OrdersCenter;
+﻿using DAL.Access;
 using DAL.EntityFramework.Services.Orders;
 using DAL.Model.OrdersCenter;
 

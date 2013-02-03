@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Access.ManagementCenter;
+using DAL.Access;
+using DAL.Model.Entities;
 using DAL.Model.ManagementCenter;
 
 namespace DAL.EntityFramework.Services.Management
 {
-    public class ManagementCenterProductSupplierMapper : BaseDataMapper<ProductSupplier, int>, IProductSupplierMapper
+    public class ManagementCenterProductSupplierMapper : BaseDataMapper<ProductSupplierBase,ProductSupplier, int>, IProductSupplierMapper
     {
         private readonly ManagementCenterContext _ctx;
 
@@ -18,7 +19,7 @@ namespace DAL.EntityFramework.Services.Management
             _ctx = ctx;
         }
 
-        public override ProductSupplier Get(int key)
+        public override ProductSupplierBase Get(int key)
         {
             return _ctx.ProductSupplier.FirstOrDefault(s => s.Id.Equals(key));
         }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Common.AsiTech.Services.Notifications;
 using Business.Common.ManagementCenter;
-using DAL.Model.Common;
+using DAL.Model.Entities;
 using DAL.Model.ManagementCenter;
 
 namespace Business.Common.Notification
@@ -32,17 +32,17 @@ namespace Business.Common.Notification
             }
         }
 
-        public static void NotifyOrderCantBeHeld(CustomerBase c, ManagementCenterProduct product)
+        public static void NotifyOrderCantBeHeld(CustomerBase c, ProductBase product)
         {
             Notify(c.Email, string.Format(OrderCantBeHeldMessageFormat, product.Id));
         }
 
-        public static void NotifyOrderIsBeingProcessed(CustomerBase customer, ManagementCenterProduct product)
+        public static void NotifyOrderIsBeingProcessed(CustomerBase customer, ProductBase product)
         {
             NotifyOrderChangedState(customer, product, "Processing");
         }
 
-        public static void NotifyOrderChangedState(CustomerBase customer, ManagementCenterProduct product, string state)
+        public static void NotifyOrderChangedState(CustomerBase customer, ProductBase product, string state)
         {
             Notify(customer.Email, string.Format(OrderChangedStateMessageFormat, product.Id, state));
         }

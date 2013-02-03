@@ -78,6 +78,13 @@ create table SupplierOrder
 	check(OrderAmount > 0),
 	primary key (OrderDate,ProductId,SupplierId)
 )
+go
+
+create view Product
+as 
+select m.Id, m.Price, m.AvailableAmount, m.SupplierId, o.Name
+FROM ManagementCenterProduct as m join OrderCenterProduct as o 
+on(m.Id = o.Id)
 
 go
 
@@ -105,13 +112,7 @@ as
 	commit transaction
 go
 
-create view Products
-as 
-select m.Id, m.Price, m.AvailableAmount, m.SupplierId, o.Name
-FROM ManagementCenterProduct as m join OrderCenterProduct as o 
-on(m.Id = o.Id)
 
-select * from Products
 
 go
 

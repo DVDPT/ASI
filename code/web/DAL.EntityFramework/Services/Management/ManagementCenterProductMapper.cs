@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Access.ManagementCenter;
+using DAL.Access;
+using DAL.Model.Entities;
 using DAL.Model.ManagementCenter;
 
 namespace DAL.EntityFramework.Services.Management
@@ -17,37 +18,29 @@ namespace DAL.EntityFramework.Services.Management
             _ctx = ctx;
         }
 
-        private ManagementCenterProduct FillName(ManagementCenterProduct mp)
+        public ProductBase Get(int key)
         {
-            if (mp == null) return null;
-            
-            mp.Name = _ctx.Products.FirstOrDefault(p => p.Id.Equals(mp.Id)).Name;
-            return mp;
+            return _ctx.Product.FirstOrDefault(p => p.Id.Equals(key));
         }
 
-        public ManagementCenterProduct Get(int key)
-        {
-            return FillName(_ctx.ManagementCenterProduct.FirstOrDefault(p => p.Id.Equals(key)));
-        }
-
-        public IQueryable<ManagementCenterProduct> Query()
+        public IQueryable<ProductBase> Query()
         {
             return _ctx.ManagementCenterProduct;
         }
 
-        public void Create(ManagementCenterProduct obj)
+        public void Create(ProductBase obj)
         {
-            _ctx.InsertProduct(obj.Id, obj.Name, obj.SupplierId, obj.Price, obj.AvailableAmount);
+            _ctx.sp_InsertProduct(obj.Id, obj.Name, obj.SupplierId, obj.Price, obj.AvailableAmount);
         }
 
-        public void Update(ManagementCenterProduct obj)
+        public void Update(ProductBase obj)
         {
-            _ctx.UpdateProduct(obj.Id, obj.AvailableAmount);
+            _ctx.sp_UpdateProduct(obj.Id, obj.AvailableAmount);
         }
 
-        public void Delete(ManagementCenterProduct obj)
+        public void Delete(ProductBase obj)
         {
-            _ctx.DeleteProduct(obj.Id);
+            _ctx.sp_DeleteProduct(obj.Id);
 
         }
 

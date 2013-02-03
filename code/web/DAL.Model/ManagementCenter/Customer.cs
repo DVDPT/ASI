@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DAL.Model.Common;
+using DAL.Model.Entities;
 
 namespace DAL.Model.ManagementCenter
 {

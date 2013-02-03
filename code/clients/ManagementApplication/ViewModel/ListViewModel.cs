@@ -105,4 +105,57 @@ namespace ManagementApplication.ViewModel
     {
 
     }
+
+    public class OrderViewModel : INotifyPropertyChanged
+    {
+        private int _customer;
+        public int Customer
+        {
+            get { return _customer; }
+            set { _customer = value; NotifyPropertyChanged("Supplier"); }
+        }
+
+        private int _product;
+        public int Product
+        {
+            get { return _product; }
+            set { _product = value; NotifyPropertyChanged("Product"); }
+        }
+
+        private DateTime _orderDate;
+        public DateTime OrderDate
+        {
+            get { return _orderDate; }
+            set { _orderDate = value; NotifyPropertyChanged("OrderDate"); }
+        }
+        
+        private int _quantity;
+        public int Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; NotifyPropertyChanged("Quantity"); }
+        }
+
+        private OrderState _state;
+        public OrderState State
+        {
+            get { return _state; }
+            set { _state = value; NotifyPropertyChanged("State"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+
+    public class OrderListViewModel : ListViewModel<OrderViewModel>
+    {
+
+    }
 }

@@ -1,3 +1,6 @@
+create database AsiTechManagementCenter
+go
+
 use AsiTechManagementCenter
 --drop proc sp_DeleteProduct
 --drop proc sp_InsertProduct
@@ -16,12 +19,20 @@ if @PcName = 'DVD-PC'
 begin
 	set @OrderCenterServer = 'DVD-PC' 
 end
+if @PcName = 'JoaoPORTATIL'
+begin
+	set @OrderCenterServer = 'JoaoPORTATIL\SQLSERVER2' 
+end
 
 exec sp_addlinkedserver @server = @OrderCenterServer, @srvproduct = 'SQL Server';
 
 if @PcName = 'DVD-PC'
 begin
 	create synonym OrderCenterProduct for  [DVD-PC].[AsiTechOrderCenter].[dbo].[OrderCenterProduct]
+end
+if @PcName = 'JoaoPORTATIL'
+begin
+	create synonym OrderCenterProduct for  [JoaoPORTATIL\SQLSERVER2].[AsiTechOrderCenter].[dbo].[OrderCenterProduct]
 end
 
 create table ProductSupplier
@@ -68,6 +79,7 @@ create table SupplierOrder
 	primary key (OrderDate,ProductId,SupplierId)
 )
 
+go
 
 create proc sp_InsertProduct
 	@id int,
@@ -100,6 +112,8 @@ FROM ManagementCenterProduct as m join OrderCenterProduct as o
 on(m.Id = o.Id)
 
 select * from Products
+
+go
 
 create proc sp_UpdateProduct
 	@id int,

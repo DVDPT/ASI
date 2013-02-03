@@ -89,9 +89,10 @@ namespace ManagementApplication.ManagementService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OrderModel", Namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderKeyModel", Namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model")]
     [System.SerializableAttribute()]
-    public partial class OrderModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ManagementApplication.ManagementService.OrderModel))]
+    public partial class OrderKeyModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -157,6 +158,45 @@ namespace ManagementApplication.ManagementService {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderModel", Namespace="http://schemas.datacontract.org/2004/07/Management.Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class OrderModel : ManagementApplication.ManagementService.OrderKeyModel {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
             }
         }
     }
@@ -658,10 +698,22 @@ namespace ManagementApplication.ManagementService {
     public interface ICustomerOrderService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICustomerOrderService/ChangeOrderState")]
-        void ChangeOrderState(ManagementApplication.ManagementService.OrderModel order, ManagementApplication.ManagementService.OrderState state);
+        void ChangeOrderState(ManagementApplication.ManagementService.OrderKeyModel order, ManagementApplication.ManagementService.OrderState state);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICustomerOrderService/ChangeOrderState")]
-        System.Threading.Tasks.Task ChangeOrderStateAsync(ManagementApplication.ManagementService.OrderModel order, ManagementApplication.ManagementService.OrderState state);
+        System.Threading.Tasks.Task ChangeOrderStateAsync(ManagementApplication.ManagementService.OrderKeyModel order, ManagementApplication.ManagementService.OrderState state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/AllOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/AllOrdersResponse")]
+        ManagementApplication.ManagementService.OrderModel[] AllOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/AllOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/AllOrdersResponse")]
+        System.Threading.Tasks.Task<ManagementApplication.ManagementService.OrderModel[]> AllOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/GetOrderResponse")]
+        ManagementApplication.ManagementService.OrderModel GetOrder(ManagementApplication.ManagementService.OrderKeyModel orderModel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/GetOrderResponse")]
+        System.Threading.Tasks.Task<ManagementApplication.ManagementService.OrderModel> GetOrderAsync(ManagementApplication.ManagementService.OrderKeyModel orderModel);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -691,12 +743,28 @@ namespace ManagementApplication.ManagementService {
                 base(binding, remoteAddress) {
         }
         
-        public void ChangeOrderState(ManagementApplication.ManagementService.OrderModel order, ManagementApplication.ManagementService.OrderState state) {
+        public void ChangeOrderState(ManagementApplication.ManagementService.OrderKeyModel order, ManagementApplication.ManagementService.OrderState state) {
             base.Channel.ChangeOrderState(order, state);
         }
         
-        public System.Threading.Tasks.Task ChangeOrderStateAsync(ManagementApplication.ManagementService.OrderModel order, ManagementApplication.ManagementService.OrderState state) {
+        public System.Threading.Tasks.Task ChangeOrderStateAsync(ManagementApplication.ManagementService.OrderKeyModel order, ManagementApplication.ManagementService.OrderState state) {
             return base.Channel.ChangeOrderStateAsync(order, state);
+        }
+        
+        public ManagementApplication.ManagementService.OrderModel[] AllOrders() {
+            return base.Channel.AllOrders();
+        }
+        
+        public System.Threading.Tasks.Task<ManagementApplication.ManagementService.OrderModel[]> AllOrdersAsync() {
+            return base.Channel.AllOrdersAsync();
+        }
+        
+        public ManagementApplication.ManagementService.OrderModel GetOrder(ManagementApplication.ManagementService.OrderKeyModel orderModel) {
+            return base.Channel.GetOrder(orderModel);
+        }
+        
+        public System.Threading.Tasks.Task<ManagementApplication.ManagementService.OrderModel> GetOrderAsync(ManagementApplication.ManagementService.OrderKeyModel orderModel) {
+            return base.Channel.GetOrderAsync(orderModel);
         }
     }
     

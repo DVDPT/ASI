@@ -1,3 +1,6 @@
+create database AsiTechOrderCenter
+go
+
 use AsiTechOrderCenter
 
 --drop table OrderCenterProduct

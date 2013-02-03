@@ -18,8 +18,8 @@
                     <Button x:Name="bPlaceOrder" Content="Place Order" Command="{Binding NavigationButtonCommand}" CommandParameter="./Panels/Suppliers/PlaceOrder.xaml"/>
                 </TreeViewItem>
                 <TreeViewItem Header="Orders">
-                    <Button x:Name="bListOrders" Content="List" Command="{Binding NavigationButtonCommand}"/>
-                    <Button x:Name="bManageOrder" Content="Manage" Command="{Binding NavigationButtonCommand}"/>
+                    <Button x:Name="bListOrders" Content="List" Command="{Binding NavigationButtonCommand}" CommandParameter="./Panels/Orders/ListOrders.xaml"/>
+                    <Button x:Name="bManageOrder" Content="Manage" Command="{Binding NavigationButtonCommand}" CommandParameter="./Panels/Orders/ManageOrder.xaml"/>
                 </TreeViewItem>
             </TreeView>
         </Border>

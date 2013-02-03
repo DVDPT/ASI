@@ -58,6 +58,12 @@
     <Compile Include="Panels\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panels\Orders\ListOrders.xaml.cs">
+      <DependentUpon>ListOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Orders\ManageOrder.xaml.cs">
+      <DependentUpon>ManageOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\Suppliers\PlaceOrder.xaml.cs">
       <DependentUpon>PlaceOrder.xaml</DependentUpon>
     </Compile>
@@ -69,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ManageOrderViewModel.cs" />
     <Compile Include="ViewModel\ListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PlaceOrderViewModel.cs" />
@@ -91,6 +98,14 @@
     <Page Include="Panels\Clients\ListClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Orders\ListOrders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Orders\ManageOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Panels\Suppliers\PlaceOrder.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +159,9 @@
     <None Include="Service References\ManagementService\ManagementApplication.ManagementService.CustomerModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ManagementService\ManagementApplication.ManagementService.OrderModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ManagementService\ManagementApplication.ManagementService.ProductModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -175,9 +193,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Panels\Orders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -12,22 +12,48 @@
   <xs:element name="ChangeOrderState">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="order" nillable="true" type="q2:OrderModel" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="order" nillable="true" type="q2:OrderKeyModel" />
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Business.Common.ManagementCenter" minOccurs="0" name="state" type="q3:OrderState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllOrders">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AllOrdersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllOrdersResult" nillable="true" type="q4:ArrayOfOrderModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="orderModel" nillable="true" type="q5:OrderKeyModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="GetOrderResult" nillable="true" type="q6:OrderModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateCustomer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q4:CreateCustomerModel" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q7:CreateCustomerModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveCustomer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q5:RemoveCustomerModel" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q8:RemoveCustomerModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -39,14 +65,14 @@
   <xs:element name="AllCustomersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllCustomersResult" nillable="true" type="q6:ArrayOfCustomerModel" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllCustomersResult" nillable="true" type="q9:ArrayOfCustomerModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OrderProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q7:OrderProductModel" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="model" nillable="true" type="q10:OrderProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,7 +84,7 @@
   <xs:element name="AllSuppliersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllSuppliersResult" nillable="true" type="q8:ArrayOfSupplierModel" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllSuppliersResult" nillable="true" type="q11:ArrayOfSupplierModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -70,7 +96,7 @@
   <xs:element name="AllProductsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllProductsResult" nillable="true" type="q9:ArrayOfProductModel" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="AllProductsResult" nillable="true" type="q12:ArrayOfProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,7 +110,7 @@
   <xs:element name="ProductsFromResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="ProductsFromResult" nillable="true" type="q10:ArrayOfProductModel" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Management.Service.Model" minOccurs="0" name="ProductsFromResult" nillable="true" type="q13:ArrayOfProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

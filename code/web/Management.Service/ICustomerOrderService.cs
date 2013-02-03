@@ -15,7 +15,13 @@ namespace Management.Service
     public interface ICustomerOrderService
     {
         [OperationContract(IsOneWay = true)]
-        void ChangeOrderState(OrderModel order, OrderState state);
+        void ChangeOrderState(OrderKeyModel order, OrderState state);
+
+        [OperationContract]
+        OrderModel[] AllOrders();
+
+        [OperationContract]
+        OrderModel GetOrder(OrderKeyModel orderModel);
     }
 
 

@@ -20,7 +20,7 @@ namespace Management.Service.Model
     }
 
     [DataContract]
-    public class OrderModel
+    public class OrderKeyModel
     {
         [DataMember(IsRequired = true)]
         public int ProductCode { get; set; }
@@ -30,5 +30,15 @@ namespace Management.Service.Model
 
         [DataMember(IsRequired = true)]
         public DateTime OrderDate { get; set; }
+    }
+
+    [DataContract]
+    public class OrderModel : OrderKeyModel
+    {
+        [DataMember]
+        public int Quantity { get; set; }
+
+        [DataMember]
+        public int State { get; set; }
     }
 }

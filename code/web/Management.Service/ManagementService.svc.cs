@@ -5,18 +5,18 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using Business.Common.Notification;
 using DAL.Model.Common;
 using DAL.Model.ManagementCenter;
 using Management.Service.Model;
 using System.Transactions;
 using Business.Common.ManagementCenter;
 using Management.Service.AsiTech.Services.Notification;
+using Business.Common.Notification;
 
 namespace Management.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService
+    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService, IProductService
     {
         #region ICustomerOrderReceiverService
         [OperationBehavior(TransactionAutoComplete = true,
@@ -65,9 +65,8 @@ namespace Management.Service
         #region ICustomerOrderService
 
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        public void ChangeOrderState(OrderModel orderModel, OrderState state)
+        public void ChangeOrderState(OrderKeyModel orderModel, OrderState state)
         {
-
             using (var mappers = new ManagementDataMapperContainer())
             {
                 var orderMapper = mappers.CustomerOrderMapper;
@@ -86,6 +85,44 @@ namespace Management.Service
                                                            mappers.ProductMapper.Get(orderModel.ProductCode),
                                                            state.ToString());
 
+            }
+        }
+
+        public OrderModel[] AllOrders()
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var orderMapper = mappers.CustomerOrderMapper;
+
+                return orderMapper.Query().Select(o =>
+                    new OrderModel
+                    {
+                        ProductCode = o.ProductId,
+                        CustomerId = o.CustomerId,
+                        OrderDate = o.OrderDate,
+                        Quantity = o.OrderAmount.Value,
+                        State = o.State
+                    }).ToArray();
+            }
+        }
+
+        public OrderModel GetOrder(OrderKeyModel orderModel)
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var orderMapper = mappers.CustomerOrderMapper;
+
+                return orderMapper.Query()
+                    .Select(o =>
+                        new OrderModel
+                        {
+                            ProductCode = o.ProductId,
+                            CustomerId = o.CustomerId,
+                            OrderDate = o.OrderDate,
+                            Quantity = o.OrderAmount.Value,
+                            State = o.State
+                        })
+                    .SingleOrDefault(o => o.ProductCode == orderModel.ProductCode && o.CustomerId == orderModel.CustomerId && o.OrderDate == orderModel.OrderDate);
             }
         }
         #endregion
@@ -171,6 +208,44 @@ namespace Management.Service
                 ).ToArray();
             }
         }
+        #endregion
+
+        #region IProductService
+
+        public ProductModel[] AllProducts()
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var productMapper = mappers.ProductMapper;
+
+                return productMapper.Query().Select(p =>
+                    new ProductModel
+                    {
+                        Code = p.Id,
+                        Name = p.Name,
+                        Quantity = p.AvailableAmount,
+                        Supplier = p.SupplierId
+                    }).ToArray();
+            }
+        }
+
+        public ProductModel[] ProductsFrom(int supplierId)
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var productMapper = mappers.ProductMapper;
+
+                return productMapper.Query().Where(p => p.SupplierId == supplierId)
+                    .Select(p => new ProductModel
+                        {
+                            Code = p.Id,
+                            Name = p.Name,
+                            Quantity = p.AvailableAmount,
+                            Supplier = p.SupplierId
+                        }).ToArray();
+            }
+        }
+
         #endregion
     }
 }

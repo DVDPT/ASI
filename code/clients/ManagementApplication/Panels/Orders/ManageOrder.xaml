@@ -1,0 +1,36 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:States="clr-namespace:ManagementApplication.ManagementService"
+      xmlns:ViewModel="clr-namespace:ManagementApplication.ViewModel" x:Class="ManagementApplication.Panels.ManageOrder" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="AddClient">
+    <Page.DataContext>
+        <ViewModel:ManageOrderViewModel/>
+    </Page.DataContext>
+    <DockPanel>
+        <Grid Margin="0" DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0" TextWrapping="Wrap" Text="Orders" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBlock Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="State" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cState" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderStates}" SelectedItem="{Binding State}"/>
+            <ComboBox x:Name="cOrder" Grid.Column="1" VerticalAlignment="Top" ItemsSource="{Binding Orders}"/>
+
+        </Grid>
+        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button x:Name="bUpdate" Content="Update" Margin="0" Click="bUpdate_Click" HorizontalAlignment="Center"/>
+            <Button x:Name="bRefresh" Content="Refresh Data" Margin="10,0,0,0" HorizontalAlignment="Center" Click="bRefresh_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Page>

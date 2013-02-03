@@ -23,6 +23,18 @@
   <wsdl:message name="ICustomerOrderService_ChangeOrderState_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeOrderState" />
   </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_AllOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllOrders" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_AllOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_GetOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrder" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_GetOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderResponse" />
+  </wsdl:message>
   <wsdl:message name="ICustomerService_CreateCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateCustomer" />
   </wsdl:message>
@@ -64,6 +76,14 @@
   <wsdl:portType name="ICustomerOrderService">
     <wsdl:operation name="ChangeOrderState">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/ChangeOrderState" message="tns:ICustomerOrderService_ChangeOrderState_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/AllOrders" message="tns:ICustomerOrderService_AllOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/AllOrdersResponse" message="tns:ICustomerOrderService_AllOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/GetOrder" message="tns:ICustomerOrderService_GetOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/GetOrderResponse" message="tns:ICustomerOrderService_GetOrder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICustomerService">
@@ -114,6 +134,24 @@
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AllOrders">
+      <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/AllOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/GetOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_ICustomerService" type="tns:ICustomerService">

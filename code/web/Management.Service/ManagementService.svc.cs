@@ -15,52 +15,8 @@ using Business.Common.Notification;
 namespace Management.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class ManagementService : ICustomerOrderReceiverService, ICustomerOrderService, ICustomerService, ISuppliersService, IProductService
+    public class ManagementService : ICustomerOrderService, ICustomerService, ISuppliersService, IProductService
     {
-        #region ICustomerOrderReceiverService
-        [OperationBehavior(TransactionAutoComplete = true,
-                         TransactionScopeRequired = true
-        )]
-        public void HandleOrder(CreateOrderModel orderModel)
-        {
-            using (var mappers = new ManagementDataMapperContainer())
-            {
-                var product = mappers.ProductMapper.Get(orderModel.ProductCode);
-                var customer = mappers.CustomerMapper.Get(orderModel.CustomerId);
-
-                if (product.AvailableAmount < orderModel.Quantity)
-                {
-                    //
-                    //  Order can't be satisfied, notify the user.
-                    //
-                    NotificationHelper.NotifyOrderCantBeHeld(customer, product);
-                    return;
-                }
-
-
-                product.AvailableAmount -= orderModel.Quantity;
-                mappers.ProductMapper.Update(product);
-
-                var customerOrderMapper = mappers.CustomerOrderMapper;
-
-                customerOrderMapper.Create(new CustomerOrder
-                {
-                    CustomerId = orderModel.CustomerId,
-                    ProductId = orderModel.ProductCode,
-                    OrderAmount = orderModel.Quantity,
-                    OrderDate = DateTime.Now,
-                    State = (int)OrderState.Processing
-                });
-
-                NotificationHelper.NotifyOrderIsBeingProcessed(customer, product);
-            }
-
-        }
-
-
-
-        #endregion
-
         #region ICustomerOrderService
 
         [TransactionFlow(TransactionFlowOption.Allowed)]

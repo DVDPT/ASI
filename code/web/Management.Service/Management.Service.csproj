@@ -93,6 +93,7 @@
     <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\SupplierModels.cs" />
+    <Compile Include="Notification\NotificationHelper.cs" />
     <Compile Include="OrderHandlerService.svc.cs">
       <DependentUpon>OrderHandlerService.svc</DependentUpon>
     </Compile>
@@ -108,6 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Properties\PublishProfiles\AsiTech.pubxml" />
     <Content Include="Service References\AsiTech.Services.Notification\service.wsdl" />
     <None Include="Service References\AsiTech.Services.Notification\service.xsd">

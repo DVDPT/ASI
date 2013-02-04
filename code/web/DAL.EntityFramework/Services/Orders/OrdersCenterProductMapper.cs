@@ -10,12 +10,12 @@ using DAL.Model.OrdersCenter;
 
 namespace DAL.EntityFramework.Services.Orders
 {
-    public class OrdersCenterProductMapper : BaseDataMapper<ProductBase,Product, int>, IProductMapper
+    public class OrdersCenterProductMapper : BaseDataMapper<ProductBase,OrderCenterProduct, int>, IProductMapper
     {
         private readonly OrdersCenterContext _ctx;
 
         public OrdersCenterProductMapper(OrdersCenterContext ctx)
-            : base(ctx.Product)
+            : base(ctx.OrderCenterProduct)
         {
             _ctx = ctx;
         }

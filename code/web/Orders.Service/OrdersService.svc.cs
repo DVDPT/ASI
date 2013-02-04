@@ -29,10 +29,10 @@ namespace Orders.Service
             using (var transaction = new TransactionScope(TransactionScopeOption.Required))
             {
                 CustomerBase customer;
-
+                ProductBase prod;
                 using (var mappers = new OrdersDataMapperContainer())
                 {
-                    EnsureProductExistance(mappers.ProductMapper, order.ProductCode);
+                    prod = EnsureProductExistance(mappers.ProductMapper, order.ProductCode);
                    
                     customer = EnsureCustomerExistance(mappers.CustomerMapper, order.CustomerId);
 
@@ -50,7 +50,7 @@ namespace Orders.Service
                     {
                         using (var notification = new NotificationServiceClient())
                         {
-                            notification.SendEmail(customer.Email, "cenas");
+                            notification.SendEmail(customer.Email, "Your order was .");
                         }
                     }
                     catch 

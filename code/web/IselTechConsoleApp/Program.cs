@@ -15,6 +15,7 @@ namespace IselTechConsoleApp
         static void Main(string[] args)
         {
             var p = new ManagementCenterContext();
+            var csss = p.Customer.ToList();
             var xpto  = p.Product.First();
             OrdersCenterContext c;
             var a = new OrdersCenterProductMapper(c = new OrdersCenterContext());

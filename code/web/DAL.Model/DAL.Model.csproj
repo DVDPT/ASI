@@ -121,6 +121,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ManagementCenterModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="ManagementCenter\ManagementCenterModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ManagementCenterModel.edmx</DependentUpon>

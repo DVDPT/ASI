@@ -10,7 +10,7 @@ using Management.Service.Model;
 using System.Transactions;
 using Business.Common.ManagementCenter;
 using Management.Service.AsiTech.Services.Notification;
-using Business.Common.Notification;
+using Management.Service.Notification;
 
 namespace Management.Service
 {
@@ -135,6 +135,32 @@ namespace Management.Service
         #endregion
 
         #region ISuppliersService
+
+        [OperationBehavior(TransactionAutoComplete = true, TransactionScopeRequired = true)]
+        public void OrderReceived(OrderProductModel model)
+        {
+            using (var mappers = new ManagementDataMapperContainer())
+            {
+                var order = mappers.SupplierOrderMapper.Query().FirstOrDefault(
+                    o => o.ProductId.Equals(model.ProductCode) && o.SupplierId.Equals(model.Supplier));
+
+                if (order == null)
+                    return;
+
+                mappers.SupplierOrderMapper.Delete(order);
+
+                var product = mappers.ProductMapper.Get(model.ProductCode);
+
+                if (product == null)
+                    return;
+
+                product.AvailableAmount += order.OrderAmount;
+
+                mappers.ProductMapper.Update(product);
+
+            }
+        }
+
         [TransactionFlow(TransactionFlowOption.Allowed)]
         public void OrderProduct(OrderProductModel model)
         {

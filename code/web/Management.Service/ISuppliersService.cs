@@ -11,7 +11,10 @@ namespace Management.Service
     [ServiceContract]
     public interface ISuppliersService
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
+        void OrderReceived(OrderProductModel model);
+
+        [OperationContract]
         void OrderProduct(OrderProductModel model);
 
         [OperationContract]

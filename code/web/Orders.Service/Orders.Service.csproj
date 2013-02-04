@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OrdersService.svc" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Service References\AsiTech.Services.Management\CustomerOrderReceiverService.wsdl" />
     <None Include="Service References\AsiTech.Services.Management\item.disco" />
     <None Include="Service References\AsiTech.Services.Management\configuration91.svcinfo" />

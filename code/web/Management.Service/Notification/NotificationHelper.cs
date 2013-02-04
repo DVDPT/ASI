@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Common.AsiTech.Services.Notifications;
-using Business.Common.ManagementCenter;
-using DAL.Model.Entities;
-using DAL.Model.ManagementCenter;
+﻿using DAL.Model.Entities;
+using Management.Service.AsiTech.Services.Notification;
 
-namespace Business.Common.Notification
+namespace Management.Service.Notification
 {
     public static class NotificationHelper
     {

@@ -1,5 +1,4 @@
 ﻿using Business.Common.ManagementCenter;
-using Business.Common.Notification;
 using DAL.Model.ManagementCenter;
 using Management.Service.Model;
 using System;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Management.Service.Notification;
 
 namespace Management.Service
 {
